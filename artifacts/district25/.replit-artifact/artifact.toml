@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Nambiar District 25 — Phase 2"
+version = "1.0.0"
+id = "artifacts/district25"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18198
+
+[services.development]
+run = "pnpm --filter @workspace/district25 run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/district25", "run", "build" ]
+publicDir = "artifacts/district25/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18198"
+BASE_PATH = "/"
