@@ -1,6 +1,12 @@
-import React, { useState, useEffect } from 'react';
+// Temporary placeholder to satisfy import in home.tsx
+export function Navigation() {
+  return null;
+}
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Download, Menu, X } from 'lucide-react';
+
+const BROCHURE_URL = encodeURI('/brochure/NBR District 25 mini face.pdf');
 
 export function LoadingScreen() {
   const [loading, setLoading] = useState(true);
@@ -15,187 +21,113 @@ export function LoadingScreen() {
       {loading && (
         <motion.div
           initial={{ opacity: 1 }}
+          animate={{ opacity: 0 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#F7F7F5]"
+          transition={{ duration: 0.8, delay: 2.5 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#e7dfd2]"
         >
-          <motion.div 
-            initial={{ width: 0 }}
-            animate={{ width: "160px" }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="h-[1px] bg-primary mb-8"
-          />
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="text-3xl md:text-5xl font-serif text-[#111111] tracking-[0.2em]"
-          >
-            DISTRICT <span className="text-primary">25</span>
-          </motion.h1>
+          <div className="text-3xl font-serif tracking-[0.2em] text-[#1f1b18]">NAMBIAR DISTRICT 25</div>
         </motion.div>
       )}
+
     </AnimatePresence>
   );
 }
 
-export function Navigation() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollTo = (id: string) => {
-    setMobileMenuOpen(false);
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  return (
-    <motion.nav 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, delay: 2.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-md py-3 border-b border-[#E6E6E6]' : 'bg-transparent py-5'}`}
-    >
-      <div className="container mx-auto px-6 flex min-w-0 items-center justify-between gap-4">
-        <div className="text-lg sm:text-2xl font-serif text-[#111111] tracking-[0.2em] cursor-pointer leading-tight max-w-[70%] whitespace-normal" onClick={() => scrollTo('hero')}>
-          NAMBIAR <span className="text-primary text-base sm:text-lg opacity-70 px-2">|</span> DISTRICT 25
-        </div>
-
-        <div className="hidden md:flex items-center space-x-8 text-xs tracking-widest text-[#444444] uppercase">
-          <button onClick={() => scrollTo('overview')} className="hover:text-primary transition-colors">Overview</button>
-          <button onClick={() => scrollTo('amenities')} className="hover:text-primary transition-colors">Amenities</button>
-          <button onClick={() => scrollTo('floorplans')} className="hover:text-primary transition-colors">Floor Plans</button>
-          <button onClick={() => scrollTo('location')} className="hover:text-primary transition-colors">Location</button>
-          <button onClick={() => scrollTo('contact')} className="hover:text-primary transition-colors">Contact</button>
-        </div>
-
-        <div className="hidden md:block">
-          <button onClick={() => scrollTo('contact')} className="bg-white border border-primary/40 text-[#111111] px-6 py-2 rounded-none transition-all duration-300 uppercase text-xs tracking-widest hover:bg-primary/15 hover:shadow-[0_12px_30px_rgba(200,169,106,0.35)]">
-            Submit Inquiry
-          </button>
-        </div>
-
-        <button className="md:hidden text-[#111111]" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          {mobileMenuOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-[#E6E6E6] overflow-hidden"
-          >
-            <div className="flex flex-col items-center py-8 space-y-6 text-[#444444] tracking-widest uppercase text-sm">
-              <button onClick={() => scrollTo('overview')}>Overview</button>
-              <button onClick={() => scrollTo('amenities')}>Amenities</button>
-              <button onClick={() => scrollTo('floorplans')}>Floor Plans</button>
-              <button onClick={() => scrollTo('location')}>Location</button>
-              <button onClick={() => scrollTo('contact')} className="text-primary mt-4">Submit Inquiry</button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
-  );
-}
 
 export function Hero() {
   const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
-    <section id="hero" className="relative min-h-[92vh] w-full flex items-center justify-center overflow-hidden bg-[#F7F7F5]">
+    <section id="hero" className="relative flex min-h-[92vh] w-full items-center justify-center overflow-hidden bg-[#1f1b18]">
       <div className="absolute inset-0 z-0">
-        <img 
-          src="/images/hero.png" 
-          alt="Nambiar District 25 Hero" 
-          className="w-full h-full object-cover opacity-70 scale-105 motion-safe:animate-[pulse_20s_ease-in-out_infinite_alternate]"
+        <img
+          src="/images/hero.png"
+          alt="Nambiar District 25 Hero"
+          className="motion-safe:animate-[pulse_24s_ease-in-out_infinite_alternate] h-full w-full scale-[1.02] object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-[#F7F7F5]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.15),rgba(0,0,0,0.25))]"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center pt-16">
-        <div className="lg:col-span-12 flex flex-col items-start text-left">
-          <motion.div 
+      <div className="relative z-10 container mx-auto grid grid-cols-1 items-center gap-6 px-4 pt-14 sm:px-6 sm:pt-16 lg:grid-cols-12">
+        <div className="lg:col-span-8 flex flex-col items-start text-left w-full max-w-2xl sm:max-w-3xl">
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 2.8 }}
-            className="flex flex-wrap items-center gap-4 mb-6 min-w-0"
+            className="mb-6 flex min-w-0 flex-wrap items-center gap-4"
           >
-            <div className="h-[1px] w-12 bg-primary"></div>
-            <span className="text-primary tracking-[0.3em] uppercase text-xs font-medium max-w-full">
-              Bengaluru's Finest Integrated Township
+            <div className="h-px w-12 bg-[#f1ece4]/85"></div>
+            <span className="max-w-full text-xs font-medium uppercase tracking-[0.28em] text-[#f1ece4]">
+              Bengaluru&apos;s Finest Integrated Township
             </span>
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 3 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-serif text-[#111111] leading-tight mb-4"
+            className="mb-4 text-3xl leading-[1.08] font-semibold font-serif tracking-[0.01em] text-[#f8f4ee] sm:text-4xl md:text-6xl lg:text-7xl drop-shadow-[0_2px_8px_rgba(31,27,24,0.13)]"
           >
-            THE SOHO LIFE <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C8A96A] via-[#EDE7DD] to-[#C8A96A] italic pr-4">RETURNS</span>
+            THE SOHO LIFE <br className="hidden sm:inline" />
+            <span className="pr-4 font-serif italic text-[#ffffff]">
+              RETURNS
+            </span>
           </motion.h1>
 
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 3.2 }}
-            className="text-2xl md:text-3xl text-[#444444] font-serif mb-8 tracking-widest"
+            className="mb-7 text-lg font-serif tracking-[0.13em] text-[#f1ece4] sm:text-2xl md:text-3xl drop-shadow-[0_1px_4px_rgba(31,27,24,0.10)]"
           >
             PHASE 2 NOW LAUNCHING
           </motion.h2>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 3.4 }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col flex-wrap gap-4 sm:flex-row"
           >
             <button
               onClick={() => scrollToSection('contact')}
-              className="bg-white border border-primary/50 text-[#111111] px-8 py-3 font-medium tracking-widest uppercase text-sm transition-all duration-500 hover:bg-primary/15 hover:shadow-[0_12px_30px_rgba(200,169,106,0.35)]"
+              className="border border-[#f1ece4]/55 bg-[#f8f4ee] px-8 py-3 text-sm font-medium uppercase tracking-widest text-[#1f1b18] transition-all duration-500 hover:bg-[#ffffff] hover:shadow-[0_12px_30px_rgba(0,0,0,0.24)]"
             >
               Submit Inquiry
             </button>
             <button
               onClick={() => scrollToSection('floorplans')}
-              className="border border-[#E6E6E6] text-[#444444] px-8 py-3 font-medium tracking-widest uppercase text-sm transition-all duration-500 hover:border-primary/40 hover:text-[#111111] hover:bg-white"
+              className="border border-[#f1ece4]/45 bg-[#1f1b18]/28 px-8 py-3 text-sm font-medium uppercase tracking-widest text-[#f1ece4] backdrop-blur-sm transition-all duration-500 hover:border-[#ffffff]/70 hover:bg-[#1f1b18]/38 hover:text-[#ffffff]"
             >
               View Floor Plans
             </button>
+            <a
+              href={BROCHURE_URL}
+              download="NBR District 25 mini face.pdf"
+              className="inline-flex items-center gap-2 border border-[#f1ece4]/45 bg-[#3b342d] px-8 py-3 text-sm font-medium uppercase tracking-widest text-[#f8f4ee] transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#2a2522] hover:shadow-[0_12px_30px_rgba(0,0,0,0.3)]"
+            >
+              <Download size={14} />
+              Download Brochure
+            </a>
           </motion.div>
-        </div>
-      </div>
-
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 4, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
-      >
-        <span className="text-[#777777] uppercase tracking-widest text-[0.7rem] mb-3">Scroll to explore</span>
-        <div className="w-[1px] h-14 bg-[#E6E6E6] relative overflow-hidden">
-          <motion.div 
+        </div> {/* Close .lg:col-span-8 */}
+      </div> {/* Close grid container */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
+        <span className="mb-3 text-[0.7rem] uppercase tracking-widest text-[#f1ece4]/78">Scroll to explore</span>
+        <div className="relative h-14 w-px overflow-hidden bg-[#f1ece4]/35">
+          <motion.div
             animate={{ y: [0, 64] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-            className="absolute top-0 left-0 w-full h-1/2 bg-primary"
+            transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
+            className="absolute left-0 top-0 h-1/2 w-full bg-[#f8f4ee]"
           />
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

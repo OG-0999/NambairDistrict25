@@ -65,6 +65,20 @@ export function ScrollLeadPopup() {
   }, []);
 
   useEffect(() => {
+    const handleOpenPopup = () => {
+      setHasSeen(true);
+      setIsOpen(true);
+
+      if (typeof window !== "undefined") {
+        window.sessionStorage.setItem(STORAGE_KEY, "true");
+      }
+    };
+
+    window.addEventListener("district25:open-lead-popup", handleOpenPopup);
+    return () => window.removeEventListener("district25:open-lead-popup", handleOpenPopup);
+  }, []);
+
+  useEffect(() => {
     if (hasSeen !== false) {
       return;
     }
@@ -176,7 +190,7 @@ export function ScrollLeadPopup() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-[#111111]/15 px-4 py-8 backdrop-blur-md"
+          className="fixed inset-0 z-200 flex items-center justify-center bg-[#111111]/15 px-4 py-8 backdrop-blur-md"
           onClick={handleOverlayClick}
         >
           <motion.div
@@ -190,7 +204,7 @@ export function ScrollLeadPopup() {
             className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-[#E6E6E6] bg-white/90 p-6 sm:p-8 shadow-[0_30px_80px_rgba(17,17,17,0.15)] backdrop-blur-2xl"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-white/70 to-white"></div>
+            <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-primary/10 via-white/70 to-white"></div>
             <div className="pointer-events-none absolute -top-32 right-10 h-64 w-64 rounded-full bg-primary/15 blur-[120px]"></div>
 
             <button
@@ -298,7 +312,7 @@ export function ScrollLeadPopup() {
                     type="submit"
                     disabled={isLocked}
                     className={cn(
-                      "w-full max-w-[260px] border border-primary/50 bg-white px-6 py-3 text-xs uppercase tracking-[0.35em] text-[#111111]",
+                      "w-full max-w-65 border border-primary/50 bg-white px-6 py-3 text-xs uppercase tracking-[0.35em] text-[#111111]",
                       "transition-all duration-500 hover:bg-primary/15 hover:shadow-[0_12px_30px_rgba(200,169,106,0.25)]",
                       isLocked ? "cursor-not-allowed opacity-70 hover:bg-white" : "",
                     )}
@@ -314,7 +328,7 @@ export function ScrollLeadPopup() {
                         exit={{ opacity: 0, y: -8 }}
                         role="status"
                         aria-live="polite"
-                        className="w-full max-w-[360px] border border-primary/30 bg-primary/10 px-4 py-3 text-center text-xs uppercase tracking-[0.35em] text-[#111111]"
+                        className="w-full max-w-90 border border-primary/30 bg-primary/10 px-4 py-3 text-center text-xs uppercase tracking-[0.35em] text-[#111111]"
                       >
                         Thank you. We will reach you shortly.
                       </motion.div>

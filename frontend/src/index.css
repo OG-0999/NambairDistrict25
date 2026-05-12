@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -59,39 +59,39 @@
   --elevate-1: rgba(17,17,17, .04);
   --elevate-2: rgba(17,17,17, .08);
 
-  --background: 0 0% 100%;
-  --foreground: 0 0% 7%;
+  --background: 33 38% 90%;
+  --foreground: 30 18% 21%;
   
-  --border: 0 0% 90%;
+  --border: 33 24% 78%;
   
-  --card: 60 13% 97%;
-  --card-foreground: 0 0% 7%;
-  --card-border: 0 0% 90%;
+  --card: 33 34% 96%;
+  --card-foreground: 30 18% 21%;
+  --card-border: 33 27% 84%;
   
-  --popover: 60 13% 97%;
-  --popover-foreground: 0 0% 7%;
-  --popover-border: 0 0% 90%;
+  --popover: 33 34% 96%;
+  --popover-foreground: 30 18% 21%;
+  --popover-border: 33 27% 84%;
   
-  --primary: 40 44% 60%;
-  --primary-foreground: 0 0% 7%;
+  --primary: 33 32% 43%;
+  --primary-foreground: 0 0% 100%;
   
-  --secondary: 38 31% 90%;
-  --secondary-foreground: 0 0% 7%;
+  --secondary: 33 28% 88%;
+  --secondary-foreground: 30 18% 21%;
   
-  --muted: 60 13% 97%;
-  --muted-foreground: 0 0% 27%;
+  --muted: 30 26% 91%;
+  --muted-foreground: 28 14% 32%;
   
-  --accent: 40 44% 60%;
-  --accent-foreground: 0 0% 7%;
+  --accent: 32 27% 56%;
+  --accent-foreground: 0 0% 100%;
   
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
   
-  --input: 0 0% 90%;
-  --ring: 40 44% 60%;
+  --input: 30 25% 92%;
+  --ring: 33 24% 77%;
   
   --app-font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  --app-font-serif: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --app-font-serif: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
   --app-font-mono: 'SFMono-Regular', Menlo, monospace;
   --radius: 1rem;
 }
@@ -110,7 +110,12 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.72;
+    background:
+      radial-gradient(circle at top, rgba(139, 107, 62, 0.12), transparent 34%),
+      linear-gradient(180deg, #ebe3d7 0%, #f5efe6 46%, #d8cab8 100%);
+    color: #2d2926;
+    letter-spacing: 0.01em;
   }
 
   #root {
@@ -119,7 +124,10 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-medium;
+    @apply font-serif font-semibold;
+    color: #1f1b18;
+    letter-spacing: -0.01em;
+    line-height: 1.22;
   }
 }
 

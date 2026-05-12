@@ -87,8 +87,8 @@ export function BookVisit() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#F7F7F5] relative border-t border-[#E6E6E6] overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-white to-[#F7F7F5] pointer-events-none"></div>
+    <section id="contact" className="py-24 bg-[#efe9df] relative border-t border-[#e4dbca] overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-primary/10 via-[#fcfaf7] to-[#efe9df] pointer-events-none"></div>
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
@@ -99,8 +99,8 @@ export function BookVisit() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-serif text-[#111111] mb-6">BEGIN YOUR SOHO LIFE</h2>
-            <p className="text-[#666666] text-base max-w-2xl mx-auto">Phase 2 is now launching. Register your interest for priority access and exclusive preview pricing.</p>
+            <h2 className="text-3xl md:text-5xl font-serif text-[#1f1b18] mb-6">BEGIN YOUR SOHO LIFE</h2>
+            <p className="text-[#4c4339] text-base max-w-2xl mx-auto">Phase 2 is now launching. Register your interest for priority access and exclusive preview pricing.</p>
           </motion.div>
 
           <motion.div 
@@ -108,11 +108,11 @@ export function BookVisit() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white/85 backdrop-blur-xl border border-[#E6E6E6] rounded-2xl p-6 md:p-10 mb-10 shadow-[0_24px_70px_rgba(17,17,17,0.12)]"
+            className="bg-[#fcfaf7]/88 backdrop-blur-xl border border-[#e4dbca] rounded-2xl p-6 md:p-10 mb-10 shadow-[0_24px_70px_rgba(17,17,17,0.12)]"
           >
             <form className="grid grid-cols-1 md:grid-cols-2 gap-6" noValidate onSubmit={handleSubmit}>
               <div className="space-y-2 min-w-0">
-                <label htmlFor="visit-full-name" className="text-[#777777] text-xs tracking-widest uppercase">Full Name</label>
+                <label htmlFor="visit-full-name" className="text-[#7d7267] text-xs tracking-widest uppercase">Full Name</label>
                 <input
                   id="visit-full-name"
                   type="text"
@@ -121,13 +121,13 @@ export function BookVisit() {
                   placeholder="First and last name"
                   aria-invalid={Boolean(errors.fullName)}
                   aria-describedby={errors.fullName ? 'visit-full-name-error' : undefined}
-                  className="w-full min-w-0 bg-transparent border-b border-[#E6E6E6] pb-2 text-[#111111] focus:outline-none focus:border-primary transition-colors text-base"
+                  className="w-full min-w-0 bg-transparent border-b border-[#e4dbca] pb-2 text-[#1f1b18] focus:outline-none focus:border-primary transition-colors text-base"
                 />
                 {errors.fullName ? <p id="visit-full-name-error" className="text-xs text-red-600">{errors.fullName}</p> : null}
               </div>
 
               <div className="space-y-2 min-w-0">
-                <label htmlFor="visit-phone" className="text-[#777777] text-xs tracking-widest uppercase">Phone Number</label>
+                <label htmlFor="visit-phone" className="text-[#7d7267] text-xs tracking-widest uppercase">Phone Number</label>
                 <input
                   id="visit-phone"
                   type="tel"
@@ -137,13 +137,13 @@ export function BookVisit() {
                   inputMode="numeric"
                   aria-invalid={Boolean(errors.mobileNumber)}
                   aria-describedby={errors.mobileNumber ? 'visit-phone-error' : undefined}
-                  className="w-full min-w-0 bg-transparent border-b border-[#E6E6E6] pb-2 text-[#111111] focus:outline-none focus:border-primary transition-colors text-base"
+                  className="w-full min-w-0 bg-transparent border-b border-[#e4dbca] pb-2 text-[#1f1b18] focus:outline-none focus:border-primary transition-colors text-base"
                 />
                 {errors.mobileNumber ? <p id="visit-phone-error" className="text-xs text-red-600">{errors.mobileNumber}</p> : null}
               </div>
 
               <div className="space-y-2 min-w-0">
-                <label htmlFor="visit-email" className="text-[#777777] text-xs tracking-widest uppercase">Email Address</label>
+                <label htmlFor="visit-email" className="text-[#7d7267] text-xs tracking-widest uppercase">Email Address</label>
                 <input
                   id="visit-email"
                   type="email"
@@ -152,18 +152,18 @@ export function BookVisit() {
                   placeholder="Enter your email"
                   aria-invalid={Boolean(errors.email)}
                   aria-describedby={errors.email ? 'visit-email-error' : undefined}
-                  className="w-full min-w-0 bg-transparent border-b border-[#E6E6E6] pb-2 text-[#111111] focus:outline-none focus:border-primary transition-colors text-base"
+                  className="w-full min-w-0 bg-transparent border-b border-[#e4dbca] pb-2 text-[#1f1b18] focus:outline-none focus:border-primary transition-colors text-base"
                 />
                 {errors.email ? <p id="visit-email-error" className="text-xs text-red-600">{errors.email}</p> : null}
               </div>
 
               <div className="space-y-2 min-w-0">
-                <label htmlFor="visit-unit" className="text-[#777777] text-xs tracking-widest uppercase">Preferred Unit</label>
+                <label htmlFor="visit-unit" className="text-[#7d7267] text-xs tracking-widest uppercase">Preferred Unit</label>
                 <select
                   id="visit-unit"
                   value={preferredUnit}
                   onChange={(event) => setPreferredUnit(event.target.value)}
-                  className="w-full min-w-0 bg-transparent border-b border-[#E6E6E6] pb-2 text-[#111111] focus:outline-none focus:border-primary transition-colors text-base appearance-none"
+                  className="w-full min-w-0 bg-transparent border-b border-[#e4dbca] pb-2 text-[#1f1b18] focus:outline-none focus:border-primary transition-colors text-base appearance-none"
                 >
                   <option value="3bhk" className="bg-white text-[#111111]">3 BHK Ultra Luxury</option>
                   <option value="4bhk" className="bg-white text-[#111111]">4 BHK Sky Villa</option>
@@ -171,14 +171,14 @@ export function BookVisit() {
               </div>
 
               <div className="md:col-span-2 space-y-2 min-w-0">
-                <label htmlFor="visit-message" className="text-[#777777] text-xs tracking-widest uppercase">Message (Optional)</label>
+                <label htmlFor="visit-message" className="text-[#7d7267] text-xs tracking-widest uppercase">Message (Optional)</label>
                 <textarea
                   id="visit-message"
                   rows={4}
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
                   placeholder="Share your preferred move-in timeline or questions"
-                  className="w-full min-w-0 bg-transparent border-b border-[#E6E6E6] pb-2 text-[#111111] focus:outline-none focus:border-primary transition-colors text-base resize-none min-h-[120px]"
+                  className="w-full min-w-0 bg-transparent border-b border-[#e4dbca] pb-2 text-[#1f1b18] focus:outline-none focus:border-primary transition-colors text-base resize-none min-h-30"
                 />
               </div>
 
@@ -186,12 +186,12 @@ export function BookVisit() {
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className={`w-full bg-white border border-primary/50 text-[#111111] py-3 uppercase tracking-[0.2em] font-medium transition-all duration-500 hover:bg-primary/15 hover:shadow-[0_12px_30px_rgba(200,169,106,0.25)] ${status === 'submitting' ? 'cursor-not-allowed opacity-70' : ''}`}
+                  className={`w-full bg-[#fcfaf7] border border-primary/50 text-[#1f1b18] py-3 uppercase tracking-[0.2em] font-medium transition-all duration-500 hover:bg-primary/15 hover:shadow-[0_12px_30px_rgba(200,169,106,0.25)] ${status === 'submitting' ? 'cursor-not-allowed opacity-70' : ''}`}
                 >
                   {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry'}
                 </button>
                 {submitMessage ? (
-                  <div role="status" aria-live="polite" className="mt-4 rounded-2xl border border-primary/30 bg-primary/10 px-4 py-3 text-center text-xs uppercase tracking-[0.35em] text-[#111111]">
+                  <div role="status" aria-live="polite" className="mt-4 rounded-2xl border border-primary/30 bg-primary/10 px-4 py-3 text-center text-xs uppercase tracking-[0.35em] text-[#1f1b18]">
                     {submitMessage}
                   </div>
                 ) : null}
@@ -219,25 +219,25 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-white pt-16 pb-8 border-t border-[#E6E6E6]">
+    <footer className="bg-[#f5f2ec] pt-16 pb-8 border-t border-[#e4dbca]">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="lg:col-span-2">
-            <h2 className="text-xl font-serif text-[#111111] tracking-widest mb-5">
+            <h2 className="text-xl font-serif text-[#1f1b18] tracking-widest mb-5">
               NAMBIAR <span className="text-primary opacity-70 px-1">|</span> DISTRICT 25
             </h2>
-            <p className="text-[#666666] text-sm leading-relaxed max-w-md mb-8">
+            <p className="text-[#4c4339] text-sm leading-relaxed max-w-md mb-8">
               Bengaluru's finest integrated township bringing the SOHO life to the Garden City. Phase 2 now launching with ultra-luxury skyrise apartments and a 7-acre clubhouse.
             </p>
-            <div className="text-[#777777] text-xs space-y-2 border-l border-primary/30 pl-4">
-              <p><strong className="text-[#444444]">Site:</strong> Chandapura Dommasandra Road, Dommasandra, Bengaluru - 562 125</p>
-              <p><strong className="text-[#444444]">HQ:</strong> 2nd Floor, PR Business Centre, Outer Ring Road, Bengaluru - 560 103</p>
+            <div className="text-[#7d7267] text-xs space-y-2 border-l border-primary/30 pl-4">
+              <p><strong className="text-[#1f1b18]">Site:</strong> Chandapura Dommasandra Road, Dommasandra, Bengaluru - 562 125</p>
+              <p><strong className="text-[#1f1b18]">HQ:</strong> 2nd Floor, PR Business Centre, Outer Ring Road, Bengaluru - 560 103</p>
             </div>
           </div>
           
           <div>
-            <h4 className="text-[#111111] font-serif text-base mb-6">Quick Links</h4>
-            <ul className="space-y-4 text-[#666666] text-sm uppercase tracking-wider">
+            <h4 className="text-[#1f1b18] font-serif text-base mb-6">Quick Links</h4>
+            <ul className="space-y-4 text-[#4c4339] text-sm uppercase tracking-wider">
               <li><a href="#overview" className="hover:text-primary transition-colors">Overview</a></li>
               <li><a href="#amenities" className="hover:text-primary transition-colors">Amenities</a></li>
               <li><a href="#floorplans" className="hover:text-primary transition-colors">Floor Plans</a></li>
@@ -246,21 +246,21 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[#111111] font-serif text-base mb-6">Legal</h4>
-            <div className="bg-[#F7F7F5] p-4 border border-[#E6E6E6] rounded-2xl">
-              <p className="text-[#666666] text-xs mb-2 uppercase tracking-wider">RERA Registration</p>
+            <h4 className="text-[#1f1b18] font-serif text-base mb-6">Legal</h4>
+            <div className="bg-[#fcfaf7] p-4 border border-[#e4dbca] rounded-2xl">
+              <p className="text-[#7d7267] text-xs mb-2 uppercase tracking-wider">RERA Registration</p>
               <p className="text-primary font-mono text-xs">PRM/KA/RERA/1251/308/PR/200825/008011</p>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-[#E6E6E6] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[#777777] text-xs text-center md:text-left">
+        <div className="border-t border-[#e4dbca] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[#7d7267] text-xs text-center md:text-left">
             &copy; 2025 Nambiar Builders. All rights reserved. <br className="md:hidden"/> Disclaimer: Images are artistic impressions.
           </p>
           <button 
             onClick={scrollToTop}
-            className="w-10 h-10 rounded-full border border-[#E6E6E6] flex items-center justify-center text-[#777777] hover:bg-primary/15 hover:text-[#111111] hover:border-primary/40 transition-all"
+            className="w-10 h-10 rounded-full border border-[#e4dbca] flex items-center justify-center text-[#7d7267] hover:bg-primary/15 hover:text-[#1f1b18] hover:border-primary/40 transition-all"
           >
             <ArrowUp size={16} />
           </button>
@@ -288,7 +288,7 @@ export function FloatingElements() {
   return (
     <>
       {/* Scroll Progress Indicator */}
-      <div className="fixed top-0 left-0 w-full h-[2px] z-[100] bg-[#E6E6E6]">
+      <div className="fixed top-0 left-0 w-full h-0.5 z-100 bg-[#E6E6E6]">
         <div 
           className="h-full bg-primary"
           style={{ width: `${scrollProgress * 100}%` }}
@@ -303,7 +303,7 @@ export function FloatingElements() {
           aria-label="Call Now"
         >
           <span className="absolute inset-0 rounded-full bg-primary/20 animate-pulse-slow blur-xl" />
-          <span className="relative z-10 flex items-center justify-center w-14 h-14 rounded-full bg-white border border-primary/60 shadow-[0_8px_32px_rgba(200,169,106,0.18)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_36px_rgba(200,169,106,0.28)]">
+          <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-primary/60 bg-[#fcfaf7] shadow-[0_8px_32px_rgba(200,169,106,0.18)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_36px_rgba(200,169,106,0.28)]">
             <Phone className="w-7 h-7 text-primary group-hover:scale-110 transition-transform duration-300" />
           </span>
         </a>
@@ -318,7 +318,7 @@ export function FloatingElements() {
           className="relative group flex items-center justify-center"
         >
           <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-          <div className="bg-white text-[#111111] px-5 py-2.5 rounded-none font-medium tracking-widest uppercase text-[0.7rem] border border-primary/50 shadow-[0_12px_30px_rgba(200,169,106,0.25)] relative z-10 hover:bg-primary/15 transition-all duration-300">
+          <div className="bg-[#fcfaf7] text-[#1f1b18] px-5 py-2.5 rounded-full font-medium tracking-widest uppercase text-[0.7rem] border border-primary/50 shadow-[0_12px_30px_rgba(200,169,106,0.25)] relative z-10 hover:bg-primary/15 transition-all duration-300">
             Submit Inquiry
           </div>
         </button>
