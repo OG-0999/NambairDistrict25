@@ -82,24 +82,50 @@ export function AboutProject() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="relative isolate"
+            className="flex flex-col"
           >
-            <div className="relative min-h-155 rounded-[34px] border border-[#e4dbca] bg-[#fcfaf7] p-4 shadow-[0_24px_70px_rgba(17,17,17,0.12)]">
-              <div className="relative h-full min-h-150 overflow-hidden rounded-[28px]">
-                <img src="/images/about-1.png" alt="SOHO Life" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-linear-to-t from-[#111111]/45 via-transparent to-transparent"></div>
+            {/* Unified Stacked Image Container */}
+            <div className="rounded-[34px] border border-[#e4dbca] bg-[#fcfaf7] p-3 shadow-[0_24px_70px_rgba(17,17,17,0.12)] overflow-hidden">
+              {/* Top Image: Le Monde Café - Cinematic Wide Crop */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative overflow-hidden rounded-[28px] h-72 md:h-80 lg:h-96 w-full"
+              >
+                <img 
+                  src="/images/about-1.png" 
+                  alt="Le Monde Café" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-[#111111]/20 via-transparent to-transparent"></div>
+              </motion.div>
+
+              {/* Subtle Premium Divider */}
+              <div className="h-3 flex items-center justify-center">
+                <div className="h-px w-full bg-linear-to-r from-[#e4dbca]/0 via-[#e4dbca]/40 to-[#e4dbca]/0"></div>
               </div>
+
+              {/* Bottom Image: The Grandeur Theater - Equal Stacking */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                className="relative overflow-hidden rounded-[28px] h-72 md:h-80 lg:h-96 w-full"
+              >
+                <img 
+                  src="/images/about-2.png" 
+                  alt="The Grandeur Theater" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-[#111111]/20 via-transparent to-transparent"></div>
+              </motion.div>
             </div>
-             <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="absolute -right-4 top-10 w-[42%] aspect-4/5 border border-primary/25 p-2 bg-white/80 backdrop-blur-md hidden md:block rounded-[28px] shadow-[0_20px_40px_rgba(17,17,17,0.12)]"
-            >
-              <img src="/images/about-2.png" alt="Theater" className="w-full h-full object-cover" />
-            </motion.div>
-             <div className="mt-4 grid grid-cols-2 gap-4 md:hidden">
+
+            {/* Mobile Info Cards */}
+            <div className="mt-4 grid grid-cols-2 gap-4 md:hidden">
               <div className="rounded-[20px] border border-[#e4dbca] bg-[#fcfaf7] p-4 text-[#1f1b18] shadow-[0_14px_32px_rgba(17,17,17,0.08)]">
                 <p className="text-[10px] uppercase tracking-[0.32em] text-[#8a7c63] mb-2">Lifestyle</p>
                 <p className="text-sm leading-relaxed">A skyline framed by art, leisure, and greenery.</p>
