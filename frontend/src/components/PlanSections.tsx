@@ -12,7 +12,7 @@ import unit4Bhk5TLarge from '../assets/plans/unit-4-bhk-5t-large-tower-7.png';
 import masterPlanImage from '../assets/masterplan/master-plan.jpg';
 import locationMapImage from '../assets/location/address-map.jpg';
 
-const BROCHURE_URL = encodeURI('/brochure/NBR District 25 mini face.pdf');
+const BROCHURE_URL = '/brochure/nbr-district25-brochure.pdf';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },

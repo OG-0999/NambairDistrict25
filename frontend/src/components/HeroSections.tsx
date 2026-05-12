@@ -1,12 +1,13 @@
-// Temporary placeholder to satisfy import in home.tsx
-export function Navigation() {
-  return null;
-}
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Download, Menu, X } from 'lucide-react';
 
-const BROCHURE_URL = encodeURI('/brochure/NBR District 25 mini face.pdf');
+const BROCHURE_URL = '/brochure/nbr-district25-brochure.pdf';
+
+// Placeholder export to satisfy imports in home.tsx
+export function Navigation() {
+  return null;
+}
 
 export function LoadingScreen() {
   const [loading, setLoading] = useState(true);
@@ -109,7 +110,7 @@ export function Hero() {
             </button>
             <a
               href={BROCHURE_URL}
-              download="NBR District 25 mini face.pdf"
+              download="nbr-district25-brochure.pdf"
               className="inline-flex items-center gap-2 border border-[#f1ece4]/45 bg-[#3b342d] px-8 py-3 text-sm font-medium uppercase tracking-widest text-[#f8f4ee] transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#2a2522] hover:shadow-[0_12px_30px_rgba(0,0,0,0.3)]"
             >
               <Download size={14} />
