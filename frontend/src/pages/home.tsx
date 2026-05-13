@@ -1,10 +1,11 @@
 import React from 'react';
-import { LoadingScreen, Navigation, Hero } from '@/components/HeroSections';
+import { LoadingScreen, Navigation, Hero, HeroUSPStrip } from '@/components/HeroSections';
 import { TrustBar, AboutProject, KeyHighlights } from '@/components/InfoSections';
 import { Gallery, Amenities, Clubhouse } from '@/components/FeatureSections';
-import { FloorPlans, MasterPlan, Location, Testimonials } from '@/components/PlanSections';
+import { UnitPlans, Testimonials } from '@/components/PlanSections';
+import { Location } from '@/components/LocationSection';
 import { BookVisit, Footer, FloatingElements } from '@/components/FooterSections';
-import { ScrollLeadPopup } from '@/components/LeadForms';
+import { MobileStickyInquiryCTA, ScrollLeadPopup } from '@/components/LeadForms';
 
 export default function Home() {
   return (
@@ -13,17 +14,18 @@ export default function Home() {
       <Navigation />
       <FloatingElements />
       <ScrollLeadPopup />
+      <MobileStickyInquiryCTA />
       
-      <main>
+      <main className="pb-28 md:pb-0">
         <Hero />
+        <HeroUSPStrip />
         <TrustBar />
         <AboutProject />
         <KeyHighlights />
         <Gallery />
         <Amenities />
         <Clubhouse />
-        <FloorPlans />
-        <MasterPlan />
+        <UnitPlans />
         <Location />
         <Testimonials />
         <BookVisit />

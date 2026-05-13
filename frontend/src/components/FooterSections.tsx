@@ -240,8 +240,8 @@ export function Footer() {
             <ul className="space-y-4 text-[#4c4339] text-sm uppercase tracking-wider">
               <li><a href="#overview" className="hover:text-primary transition-colors">Overview</a></li>
               <li><a href="#amenities" className="hover:text-primary transition-colors">Amenities</a></li>
-              <li><a href="#floorplans" className="hover:text-primary transition-colors">Floor Plans</a></li>
               <li><a href="#location" className="hover:text-primary transition-colors">Location</a></li>
+              <li><a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
             </ul>
           </div>
 
@@ -252,6 +252,12 @@ export function Footer() {
               <p className="text-primary font-mono text-xs">PRM/KA/RERA/1251/308/PR/200825/008011</p>
             </div>
           </div>
+        </div>
+
+        <div className="border-t border-[#e4dbca] pt-8 mt-8">
+          <p className="max-w-3xl mx-auto text-center text-[0.72rem] leading-relaxed text-[#7d7267]">
+            This website is for informational purposes only and does not constitute an offer to avail any service. Prices, specifications and availability are subject to change without notice. Images are artistic impressions and indicative in nature.
+          </p>
         </div>
 
         <div className="border-t border-[#e4dbca] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">

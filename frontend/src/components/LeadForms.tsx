@@ -23,6 +23,30 @@ const initialValues: LeadPayload = {
   email: "",
 };
 
+export function MobileStickyInquiryCTA() {
+  const openInquiry = () => {
+    window.dispatchEvent(new CustomEvent("district25:open-lead-popup"));
+  };
+
+  return (
+    <motion.button
+      type="button"
+      onClick={openInquiry}
+      aria-label="Open enquiry popup"
+      animate={{ scale: [1, 1.015, 1] }}
+      transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+      className={cn(
+        "fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] left-1/2 z-50 -translate-x-1/2 md:hidden",
+        "rounded-full border border-[#c6a66a]/20 bg-[#111111] px-6 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-[#f5f1e8]",
+        "shadow-[0_18px_40px_rgba(0,0,0,0.32),0_0_0_1px_rgba(198,166,106,0.12),0_0_26px_rgba(198,166,106,0.35)]",
+        "transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]",
+      )}
+    >
+      Enquire Now
+    </motion.button>
+  );
+}
+
 export function ScrollLeadPopup() {
   const [hasSeen, setHasSeen] = useState<boolean | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -305,6 +329,23 @@ export function ScrollLeadPopup() {
                       </motion.div>
                     );
                   })}
+                </div>
+
+                <div className="mt-6 rounded-2xl border border-[#e8dcc8] bg-[#fbf8f1] px-4 py-4">
+                  <label className="flex items-start gap-3 text-sm leading-relaxed text-[#3a332b]">
+                    <input
+                      type="checkbox"
+                      defaultChecked
+                      className="mt-1 h-4 w-4 rounded border-[#c6a66a] text-[#111111] accent-[#111111]"
+                    />
+                    <span>
+                      I authorize the team to contact me via call, SMS, WhatsApp or email regarding this project.
+                    </span>
+                  </label>
+
+                  <p className="mt-3 text-xs leading-relaxed text-[#5b5144]">
+                    By proceeding, you agree to the <a href="/privacy-policy" className="text-[#2f6fed] transition-all duration-300 hover:underline">Privacy Policy</a> and <a href="/terms-and-conditions" className="text-[#2f6fed] transition-all duration-300 hover:underline">Terms &amp; Conditions</a>.
+                  </p>
                 </div>
 
                 <div className="mt-6 flex flex-col items-center gap-3">

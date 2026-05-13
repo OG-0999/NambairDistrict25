@@ -14,7 +14,7 @@ export function Gallery() {
       {
         src: '/images/gallery-1.png',
         alt: 'Gallery 1',
-        title: 'Signature Lifestyle Frame',
+        title: 'Signature Lifestyle',
         caption: 'An atmospheric composition from the District 25 visual language.',
         badge: 'Gallery'
       },
@@ -35,21 +35,21 @@ export function Gallery() {
       {
         src: '/images/gallery-4.png',
         alt: 'Gallery 4',
-        title: 'Landscape Detail',
+        title: 'Neighbourhood Frame',
         caption: 'Layered greenery and clean composition for a calmer visual rhythm.',
         badge: 'Gallery'
       },
       {
         src: '/images/gallery-5.png',
         alt: 'Gallery 5',
-        title: 'Material Moodboard',
+        title: 'Refined Moodboard',
         caption: 'A tactile, premium tone that matches the warmer site palette.',
         badge: 'Gallery'
       },
       {
         src: '/images/gallery-6.png',
         alt: 'Gallery 6',
-        title: 'Night View Impression',
+        title: 'Elevated Experience',
         caption: 'A darker, more cinematic frame for the development showcase.',
         badge: 'Gallery'
       },
@@ -97,18 +97,19 @@ export function Gallery() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.08, duration: 0.65 }}
-              className="group relative aspect-4/3 overflow-hidden rounded-3xl border border-[#e4dbca] bg-[#fcfaf7] shadow-[0_18px_40px_rgba(17,17,17,0.08)]"
+              className="gallery-card"
             >
               <img 
                 src={image.src} 
                 alt={image.alt} 
-                className="h-full w-full object-cover transition-transform duration-1100 group-hover:scale-110"
+                className="gallery-image"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-[#171310]/78 via-[#171310]/18 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
-              <div className="absolute inset-x-0 bottom-0 p-5 text-left text-white">
-                <p className="text-[10px] uppercase tracking-[0.34em] text-white/60">{image.badge ?? 'Visual'}</p>
-                <h3 className="mt-2 text-xl font-serif leading-tight">{image.title}</h3>
-                <p className="mt-2 max-w-[26ch] text-sm text-white/75 leading-relaxed">{image.caption}</p>
+              <div className="gallery-overlay" />
+              <div className="gallery-content">
+                <p className="gallery-label">{image.badge ?? 'Gallery'}</p>
+                <div className="gallery-label-underline" />
+                <h3 className="gallery-title">{image.title}</h3>
+                <p className="gallery-description">{image.caption}</p>
               </div>
             </motion.button>
           ))}

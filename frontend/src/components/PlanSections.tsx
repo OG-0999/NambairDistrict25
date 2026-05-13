@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { ImageLightbox, type LightboxImage } from '@/components/ImageLightbox';
 
@@ -114,64 +115,11 @@ const unitPlans: PlanCard[] = [
   }
 ];
 
-const floorPlans: PlanCard[] = [
-  {
-    title: '3 BED 2T',
-    subtitle: 'Architectural plan view',
-    image: unit3Bhk2T,
-    price: 'From ₹2.45 Cr',
-    saleArea: '1454 sft',
-    carpetArea: '965 sft',
-    balconyArea: '86 sft',
-    tower: '10',
-    tag: 'Floor Plan',
-    note: 'An efficient and premium family plan.',
-    highlight: 'Optimised plan'
-  },
-  {
-    title: '3 BED 3T (Medium)',
-    subtitle: 'Architectural plan view',
-    image: unit3BhkMedium,
-    price: 'From ₹2.85 Cr',
-    saleArea: '1896 sft',
-    carpetArea: '1196 sft',
-    balconyArea: '196 sft',
-    tower: '08',
-    tag: 'Floor Plan',
-    note: 'A balanced luxury layout with wider living volumes.',
-    highlight: 'Balanced layout'
-  },
-  {
-    title: '4 BED 5T (Large)',
-    subtitle: 'Architectural plan view',
-    image: unit4Bhk5TLarge,
-    price: 'From ₹4.45 Cr',
-    saleArea: '2995 sft',
-    carpetArea: '1958 sft',
-    balconyArea: '255 sft',
-    tower: '07',
-    tag: 'Floor Plan',
-    note: 'The most expansive residence in the brochure.',
-    highlight: 'Grand residence'
-  }
-];
-
-const toViewerImages = (plans: PlanCard[]): LightboxImage[] =>
-  plans.map((plan) => ({
-    src: plan.image,
-    alt: plan.title,
-    title: plan.title,
-    caption: `${plan.subtitle} · ${plan.note}`,
-    badge: `${plan.tag} · Tower ${plan.tower}`,
-  }));
-
 const dispatchLeadPopup = () => {
   window.dispatchEvent(new CustomEvent('district25:open-lead-popup'));
 };
 
-const planGridStyle = {
-  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-} as React.CSSProperties;
+const planGridClass = 'plan-carousel w-full';
 
 type PlanGridSectionProps = {
   eyebrow: string;
@@ -197,7 +145,7 @@ function PlanGridSection({ eyebrow, title, description, items, onOpenPlan }: Pla
         <p className="text-[#4c4339] text-base md:text-lg mx-auto mt-2 font-light leading-relaxed">{description}</p>
       </motion.div>
 
-      <div className="grid gap-8 md:gap-10 w-full mx-auto justify-items-center" style={planGridStyle}>
+      <div className={planGridClass}>
         {items.map((plan, idx) => (
           <motion.article
             key={plan.title + plan.subtitle}
@@ -205,78 +153,41 @@ function PlanGridSection({ eyebrow, title, description, items, onOpenPlan }: Pla
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ delay: idx * 0.08, duration: 0.6 }}
-            className="group flex h-full w-full max-w-98 flex-col overflow-hidden rounded-[36px] border border-[#d8cab8] bg-[#f7f2eb] shadow-[0_24px_80px_rgba(45,41,38,0.08)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_96px_rgba(45,41,38,0.12)]"
+            className="plan-card group relative overflow-hidden rounded-[22px] border bg-[#f6f1ea] shadow-[0_18px_40px_rgba(45,41,38,0.08)] w-[260px] h-[320px] flex-shrink-0 snap-center"
           >
-            <button
-              type="button"
-              onClick={() => onOpenPlan(idx)}
-              className="relative block w-full overflow-hidden bg-[#efe7dc]"
-            >
-              <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <img
-                  src={plan.image}
-                  alt={plan.title}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02] filter blur-[6px]"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-[#1f1b18]/14"></div>
-                <div className="absolute inset-0 flex items-center justify-center px-6">
-                  <div className="rounded-3xl border border-white/15 bg-[#1f1b18]/12 px-4 py-2 text-center text-[0.7rem] uppercase tracking-[0.35em] text-white shadow-[0_8px_28px_rgba(0,0,0,0.18)] backdrop-blur-md">
-                    Request access to view
-                  </div>
-                </div>
-              </div>
-            </button>
-
-            <div className="flex h-full flex-col px-7 py-7 text-left">
-              <div className="space-y-5 flex-1">
-                <div className="space-y-2">
-                  <h3 className="text-2xl md:text-3xl font-serif text-[#1f1b18] tracking-[-0.03em] leading-tight">{plan.title}</h3>
-                  <p className="text-[11px] uppercase tracking-[0.35em] text-[#3a342d] opacity-80">{plan.subtitle}</p>
-                </div>
-
-                <div className="rounded-3xl border border-[#e7dccb] bg-[#efe7dc] p-5 shadow-[0_18px_40px_rgba(45,41,38,0.06)]">
-                  <div className="flex items-end justify-between gap-4 border-b border-[#d8cab8] pb-4">
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.35em] text-[#8b6b3e] mb-1">Starting from</p>
-                      <p className="text-2xl font-semibold text-[#1f1b18] leading-none">{plan.price}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-[10px] uppercase tracking-[0.35em] text-[#8b6b3e] mb-1">Tower</p>
-                      <p className="text-xl font-serif text-[#1f1b18] leading-none">{plan.tower}</p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3 pt-4 text-left text-sm">
-                    <div className="rounded-2xl bg-white px-3 py-3 border border-[#efe7dc]">
-                      <p className="text-[10px] uppercase tracking-[0.32em] text-[#8b6b3e] mb-1">Sale Area</p>
-                      <p className="font-semibold text-[#2d2926]">{plan.saleArea}</p>
-                    </div>
-                    <div className="rounded-2xl bg-white px-3 py-3 border border-[#efe7dc]">
-                      <p className="text-[10px] uppercase tracking-[0.32em] text-[#8b6b3e] mb-1">Carpet Area</p>
-                      <p className="font-semibold text-[#2d2926]">{plan.carpetArea}</p>
-                    </div>
-                    <div className="rounded-2xl bg-white px-3 py-3 border border-[#efe7dc]">
-                      <p className="text-[10px] uppercase tracking-[0.32em] text-[#8b6b3e] mb-1">Balcony Area</p>
-                      <p className="font-semibold text-[#2d2926]">{plan.balconyArea}</p>
-                    </div>
-                    <div className="rounded-2xl bg-white px-3 py-3 border border-[#efe7dc]">
-                      <p className="text-[10px] uppercase tracking-[0.32em] text-[#8b6b3e] mb-1">Highlight</p>
-                      <p className="font-semibold text-[#2d2926]">{plan.highlight}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="text-sm text-[#3a342d] leading-relaxed min-h-12">{plan.note}</p>
-              </div>
-
+            <div className="relative h-[180px] overflow-hidden rounded-[18px] rounded-b-none bg-[#efe7dc]">
               <button
                 type="button"
-                onClick={dispatchLeadPopup}
-                className="mt-6 inline-flex items-center justify-center rounded-[28px] border border-[#a07b49]/20 bg-[#1f1b18]/10 px-6 py-3 text-sm uppercase tracking-[0.35em] text-[#1f1b18] transition-all duration-500 hover:border-[#a07b49]/40 hover:bg-[#1f1b18]/15"
-              >
-                Request Access
-              </button>
+                onClick={() => onOpenPlan(idx)}
+                className="absolute inset-0 z-10"
+              />
+              <img
+                src={plan.image}
+                alt={plan.title}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02] filter blur-[6px]"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-white/8" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#00000026] via-transparent to-transparent" />
+            </div>
+
+            <div className="flex h-[140px] flex-col justify-between p-5">
+              <div className="space-y-2">
+                <p className="text-[12px] uppercase tracking-[0.32em] text-[#75685d]">Unit Type</p>
+                <h3 className="text-[24px] font-medium leading-tight text-[#1d1b19]">{plan.title}</h3>
+                <p className="text-sm text-[#75685d]">Tower {plan.tower}</p>
+              </div>
+
+              <div className="space-y-4">
+                <p className="text-xl font-semibold text-[#9a7442]">{plan.price}</p>
+                <button
+                  type="button"
+                  onClick={dispatchLeadPopup}
+                  className="inline-flex h-11 w-full items-center justify-center rounded-full border border-[#b4966e29] bg-[#fcfaf7] px-4 text-sm font-semibold uppercase tracking-[0.26em] text-[#1d1b19] transition duration-300 hover:bg-[#f4eee3]"
+                >
+                  Request Access
+                </button>
+              </div>
             </div>
           </motion.article>
         ))}
@@ -285,33 +196,94 @@ function PlanGridSection({ eyebrow, title, description, items, onOpenPlan }: Pla
   );
 }
 
-export function FloorPlans() {
-  const requestPlanAccess = (_index: number) => {
-    dispatchLeadPopup();
+export function UnitPlans() {
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollCarousel = (direction: number) => {
+    if (!carouselRef.current) {
+      return;
+    }
+
+    carouselRef.current.scrollBy({ left: direction * 304, behavior: 'smooth' });
   };
 
   return (
-    <section id="floorplans" className="py-28 bg-[#f5efe6] overflow-hidden">
-      <div className="container mx-auto px-4 md:px-8">
-        <PlanGridSection
-          eyebrow="Unit Plans"
-          title="EXCLUSIVE UNIT PLAN ACCESS"
-          description="The floor plan visuals remain intentionally blurred and gated to maintain an exclusive luxury presentation. Request access to receive the full details."
-          items={unitPlans}
-          onOpenPlan={(index) => requestPlanAccess(index)}
-        />
+    <section id="floorplans" className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#0a0a0a] py-20">
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#c6a66a] rounded-full blur-[180px]"></div>
+      </div>
+      
+      <div className="container relative z-10 mx-auto px-4 md:px-8">
+        <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-3xl">
+            <span className="text-[0.7rem] uppercase tracking-[0.32em] text-[#9b7a45]">Unit Plans</span>
+            <h2 className="mt-4 text-4xl md:text-5xl font-serif font-semibold tracking-tight text-[#f4efe7]">Exclusive Unit Plans</h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/68">
+              A curated selection of premium residences framed in a cinematic dark luxury presentation. Each plan is intentionally refined to drive exclusivity and high-end enquiry.
+            </p>
+          </div>
 
-        <div className="my-20 flex items-center justify-center px-6">
-          <div className="h-0.5 w-full max-w-md bg-linear-to-r from-[#8b6b3e]/15 via-transparent to-[#8b6b3e]/15 rounded-full"></div>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => scrollCarousel(-1)}
+              aria-label="Scroll left"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#c6a66a]/25 bg-black/40 text-[#c6a66a] shadow-[0_12px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl transition duration-300 hover:border-[#c6a66a]/45 hover:bg-black/50 hover:scale-105"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollCarousel(1)}
+              aria-label="Scroll right"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#c6a66a]/25 bg-black/40 text-[#c6a66a] shadow-[0_12px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl transition duration-300 hover:border-[#c6a66a]/45 hover:bg-black/50 hover:scale-105"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
         </div>
 
-        <PlanGridSection
-          eyebrow="Floor Plans"
-          title="GATED ARCHITECTURAL FLOOR PLANS"
-          description="A cinematic editorial layout that preserves plan privacy while inviting premium enquiries for complete access."
-          items={floorPlans}
-          onOpenPlan={(index) => requestPlanAccess(index)}
-        />
+        <div ref={carouselRef} className="plan-carousel scroll-smooth snap-x snap-mandatory overflow-x-auto pb-6">
+          {unitPlans.map((plan, index) => (
+            <motion.article
+              key={`${plan.title}-${plan.tower}-${index}`}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.06, duration: 0.65 }}
+              className="group min-w-[280px] max-w-[280px] h-[340px] overflow-hidden rounded-[22px] border border-[rgb(212,175,55)]/18 bg-[#171717] shadow-[0_26px_60px_rgba(0,0,0,0.45)] snap-center transition-all duration-300 hover:shadow-[0_26px_60px_rgba(198,166,106,0.15)]"
+            >
+              <div className="relative h-[170px] overflow-hidden rounded-t-[20px]">
+                <img
+                  src={plan.image}
+                  alt={plan.title}
+                  className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-[1.04] filter blur-[4px]"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/35" />
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a0a0a]/95 via-transparent to-transparent" />
+              </div>
+
+              <div className="flex h-[170px] flex-col justify-between p-5">
+                <div className="space-y-3">
+                  <p className="text-[11px] uppercase tracking-[0.32em] text-white/68">Tower {plan.tower}</p>
+                  <h3 className="text-2xl font-semibold tracking-tight text-white">{plan.title}</h3>
+                </div>
+
+                <div className="space-y-2">
+                  <p className="text-xl font-semibold tracking-tight text-[#c6a66a]">{plan.price}</p>
+                  <button
+                    type="button"
+                    onClick={dispatchLeadPopup}
+                    className="inline-flex h-12 w-full items-center justify-center rounded-full border border-[#c6a66a] bg-transparent px-5 text-sm font-semibold uppercase tracking-[0.26em] text-[#f4efe7] transition duration-300 hover:bg-[#c6a66a] hover:text-[#111111]"
+                  >
+                    Request Access
+                  </button>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   );
