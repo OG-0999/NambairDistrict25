@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -21,97 +21,86 @@ const fadeUp = {
 };
 
 type PlanCard = {
-  title: string;
-  subtitle: string;
+  unitType: string;
   image: string;
   price: string;
-  saleArea: string;
-  carpetArea: string;
-  balconyArea: string;
   tower: string;
-  tag: string;
-  note: string;
-  highlight: string;
+  size: string;
+  phase: string;
 };
 
 const unitPlans: PlanCard[] = [
   {
-    title: '3 BED 2T',
-    subtitle: 'UNIT - 2 | TOWER - 10',
+    unitType: '2 BHK',
     image: unit3Bhk2T,
-    price: '₹2.45 Cr',
-    saleArea: '1454 sft',
-    carpetArea: '965 sft',
-    balconyArea: '86 sft',
-    tower: '10',
-    tag: 'Signature',
-    note: 'Compact luxury with efficient spatial planning.',
-    highlight: 'Limited inventory'
+    price: '₹1.47 Cr*',
+    tower: '8',
+    size: '1200–1279 sq ft',
+    phase: 'Phase 1'
   },
   {
-    title: '3 BED 3T (Small)',
-    subtitle: 'UNIT - 1 | TOWER - 11',
+    unitType: '2 BHK',
     image: unit3BhkSmall,
-    price: '₹2.65 Cr',
-    saleArea: '1695 sft',
-    carpetArea: '1124 sft',
-    balconyArea: '110 sft',
-    tower: '11',
-    tag: 'Luxury',
-    note: 'A refined family layout with a generous sky deck.',
-    highlight: 'Sky deck'
+    price: '₹1.6 Cr*',
+    tower: '10',
+    size: '1250 sq ft',
+    phase: 'Phase 2'
   },
   {
-    title: '3 BED 3T (Medium)',
-    subtitle: 'UNIT - 1 | TOWER - 08',
+    unitType: '2.5 BHK',
     image: unit3BhkMedium,
-    price: '₹2.85 Cr',
-    saleArea: '1896 sft',
-    carpetArea: '1196 sft',
-    balconyArea: '196 sft',
-    tower: '08',
-    tag: 'Signature',
-    note: 'Balanced proportions with an extended living volume.',
-    highlight: 'Corner-facing'
+    price: '₹2.05 Cr*',
+    tower: '11',
+    size: '1454 sq ft',
+    phase: 'Starting From'
   },
   {
-    title: '3 BED 3T (Large)',
-    subtitle: 'UNIT - 1 | TOWER - 09',
+    unitType: '3 BHK',
     image: unit3BhkLarge,
-    price: '₹3.1 Cr',
-    saleArea: '2046 sft',
-    carpetArea: '1303 sft',
-    balconyArea: '211 sft',
+    price: '₹2.45 Cr*',
     tower: '09',
-    tag: 'Grand',
-    note: 'A larger signature layout with a panoramic deck experience.',
-    highlight: 'Panoramic deck'
+    size: '1695 sq ft',
+    phase: 'Starting From'
   },
   {
-    title: '4 BED 4T',
-    subtitle: 'UNIT - 1 | TOWER - 12',
+    unitType: '3 BHK 2T',
+    image: unit3Bhk2T,
+    price: '₹2.65 Cr*',
+    tower: '10',
+    size: '1896 sq ft',
+    phase: 'Starting From'
+  },
+  {
+    unitType: '3 BHK Large',
+    image: unit3BhkLarge,
+    price: '₹2.85 Cr*',
+    tower: '09',
+    size: '2046 sq ft',
+    phase: 'Starting From'
+  },
+  {
+    unitType: '3.5 BHK',
+    image: unit3BhkMedium,
+    price: '₹3.1 Cr*',
+    tower: '08',
+    size: '2260 sq ft',
+    phase: 'Starting From'
+  },
+  {
+    unitType: '4 BHK',
     image: unit4Bhk4T,
-    price: '₹3.95 Cr',
-    saleArea: '2561 sft',
-    carpetArea: '1649 sft',
-    balconyArea: '254 sft',
+    price: '₹3.8 Cr*',
     tower: '12',
-    tag: 'Estate',
-    note: 'The most balanced four-bedroom configuration in the brochure.',
-    highlight: 'Family premium'
+    size: '2561 sq ft',
+    phase: 'Starting From'
   },
   {
-    title: '4 BED 5T (Large)',
-    subtitle: 'UNIT - 2 | TOWER - 07',
+    unitType: '4 BHK Large',
     image: unit4Bhk5TLarge,
-    price: '₹4.45 Cr',
-    saleArea: '2995 sft',
-    carpetArea: '1958 sft',
-    balconyArea: '255 sft',
+    price: '₹4.45 Cr*',
     tower: '07',
-    tag: 'Signature',
-    note: 'The largest brochure plan with an expansive luxury profile.',
-    highlight: 'Largest plan'
+    size: '2995 sq ft',
+    phase: 'Starting From'
   }
 ];
 
@@ -119,7 +108,7 @@ const dispatchLeadPopup = () => {
   window.dispatchEvent(new CustomEvent('district25:open-lead-popup'));
 };
 
-const planGridClass = 'plan-carousel w-full';
+const planGridClass = 'luxury-plan-carousel w-full';
 
 type PlanGridSectionProps = {
   eyebrow: string;
@@ -148,14 +137,14 @@ function PlanGridSection({ eyebrow, title, description, items, onOpenPlan }: Pla
       <div className={planGridClass}>
         {items.map((plan, idx) => (
           <motion.article
-            key={plan.title + plan.subtitle}
+            key={plan.unitType + plan.tower}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ delay: idx * 0.08, duration: 0.6 }}
-            className="plan-card group relative overflow-hidden rounded-[22px] border bg-[#f6f1ea] shadow-[0_18px_40px_rgba(45,41,38,0.08)] w-[260px] h-[320px] flex-shrink-0 snap-center"
+            className="plan-card group relative overflow-hidden rounded-[22px] border bg-[#f6f1ea] shadow-[0_18px_40px_rgba(45,41,38,0.08)] w-65 h-80 shrink-0 snap-center"
           >
-            <div className="relative h-[180px] overflow-hidden rounded-[18px] rounded-b-none bg-[#efe7dc]">
+            <div className="relative h-45 overflow-hidden rounded-[18px] rounded-b-none bg-[#efe7dc]">
               <button
                 type="button"
                 onClick={() => onOpenPlan(idx)}
@@ -163,18 +152,18 @@ function PlanGridSection({ eyebrow, title, description, items, onOpenPlan }: Pla
               />
               <img
                 src={plan.image}
-                alt={plan.title}
+                alt={plan.unitType}
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02] filter blur-[6px]"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-white/8" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#00000026] via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-[#00000026] via-transparent to-transparent" />
             </div>
 
-            <div className="flex h-[140px] flex-col justify-between p-5">
+            <div className="flex h-35 flex-col justify-between p-5">
               <div className="space-y-2">
                 <p className="text-[12px] uppercase tracking-[0.32em] text-[#75685d]">Unit Type</p>
-                <h3 className="text-[24px] font-medium leading-tight text-[#1d1b19]">{plan.title}</h3>
+                <h3 className="text-[24px] font-medium leading-tight text-[#1d1b19]">{plan.unitType}</h3>
                 <p className="text-sm text-[#75685d]">Tower {plan.tower}</p>
               </div>
 
@@ -198,28 +187,76 @@ function PlanGridSection({ eyebrow, title, description, items, onOpenPlan }: Pla
 
 export function UnitPlans() {
   const carouselRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<Array<HTMLElement | null>>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const pricingHighlights = useMemo(
+    () => [
+      { label: 'Phase 1', type: '2 BHK', size: '1200–1279 sq ft', price: '₹1.47 Cr*' },
+      { label: 'Phase 2', type: '2 BHK', size: '1250 sq ft', price: '₹1.6 Cr*' },
+    ],
+    [],
+  );
 
   const scrollCarousel = (direction: number) => {
     if (!carouselRef.current) {
       return;
     }
 
-    carouselRef.current.scrollBy({ left: direction * 304, behavior: 'smooth' });
+    const nextIndex = Math.min(Math.max(activeIndex + direction, 0), unitPlans.length - 1);
+    cardRefs.current[nextIndex]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    setActiveIndex(nextIndex);
   };
 
+  useEffect(() => {
+    const root = carouselRef.current;
+    if (!root) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (!visible) {
+          return;
+        }
+
+        const index = Number((visible.target as HTMLElement).dataset.index ?? 0);
+        if (!Number.isNaN(index)) {
+          setActiveIndex(index);
+        }
+      },
+      {
+        root,
+        threshold: [0.55, 0.7, 0.85],
+      },
+    );
+
+    cardRefs.current.forEach((card) => {
+      if (card) {
+        observer.observe(card);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="floorplans" className="relative overflow-hidden bg-gradient-to-b from-[#111111] to-[#0a0a0a] py-20">
+    <section id="floorplans" className="relative overflow-hidden bg-linear-to-b from-[#111111] to-[#0a0a0a] py-20">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#c6a66a] rounded-full blur-[180px]"></div>
       </div>
       
       <div className="container relative z-10 mx-auto px-4 md:px-8">
-        <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
             <span className="text-[0.7rem] uppercase tracking-[0.32em] text-[#9b7a45]">Unit Plans</span>
-            <h2 className="mt-4 text-4xl md:text-5xl font-serif font-semibold tracking-tight text-[#f4efe7]">Exclusive Unit Plans</h2>
+            <h2 className="mt-4 text-4xl md:text-5xl font-serif font-semibold tracking-tight text-[#f4efe7]">Luxury Unit Plans</h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/68">
-              A curated selection of premium residences framed in a cinematic dark luxury presentation. Each plan is intentionally refined to drive exclusivity and high-end enquiry.
+              A compact cinematic carousel with blurred plan previews, pricing clarity, and the full residence ladder from 2 BHK to 4 BHK Large.
             </p>
           </div>
 
@@ -243,41 +280,80 @@ export function UnitPlans() {
           </div>
         </div>
 
-        <div ref={carouselRef} className="plan-carousel scroll-smooth snap-x snap-mandatory overflow-x-auto pb-6">
+        <div className="mb-10 grid gap-4 sm:grid-cols-2">
+          {pricingHighlights.map((item) => (
+            <div key={item.label + item.price} className="rounded-[22px] border border-[#c6a66a]/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(10,10,10,0.16))] px-5 py-4 shadow-[0_14px_34px_rgba(0,0,0,0.22)] backdrop-blur-md">
+              <p className="text-[10px] uppercase tracking-[0.34em] text-[#9b7a45]">{item.label}</p>
+              <div className="mt-3 flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <p className="text-lg font-semibold text-[#f4efe7]">{item.type}</p>
+                  <p className="text-sm text-white/56">{item.size}</p>
+                </div>
+                <p className="text-lg font-semibold text-[#c6a66a]">{item.price}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div ref={carouselRef} className="luxury-plan-carousel scroll-smooth snap-x snap-mandatory overflow-x-auto pb-6">
           {unitPlans.map((plan, index) => (
             <motion.article
-              key={`${plan.title}-${plan.tower}-${index}`}
+              key={`${plan.unitType}-${plan.tower}-${index}`}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.06, duration: 0.65 }}
-              className="group min-w-[280px] max-w-[280px] h-[340px] overflow-hidden rounded-[22px] border border-[rgb(212,175,55)]/18 bg-[#171717] shadow-[0_26px_60px_rgba(0,0,0,0.45)] snap-center transition-all duration-300 hover:shadow-[0_26px_60px_rgba(198,166,106,0.15)]"
+              data-index={index}
+              ref={(node) => {
+                cardRefs.current[index] = node;
+              }}
+              onClick={() => dispatchLeadPopup()}
+              className={[
+                'group luxury-plan-card min-w-66 max-w-66 h-98 overflow-hidden rounded-[28px] border snap-center transition-all duration-300 cursor-pointer',
+                index === activeIndex
+                  ? 'border-[#c6a66a]/38 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(8,10,9,0.92))] shadow-[0_24px_60px_rgba(0,0,0,0.42),0_0_0_1px_rgba(198,166,106,0.10)] scale-[1.02]'
+                  : 'border-[#c6a66a]/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(8,10,9,0.88))] shadow-[0_18px_46px_rgba(0,0,0,0.34)] opacity-90',
+              ].join(' ')}
             >
-              <div className="relative h-[170px] overflow-hidden rounded-t-[20px]">
+              <div className="relative h-[12.4rem] overflow-hidden rounded-t-[28px] bg-[#0f1714]">
                 <img
                   src={plan.image}
-                  alt={plan.title}
-                  className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-[1.04] filter blur-[4px]"
+                  alt={plan.unitType}
+                  className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-[1.04] filter blur-[5px] brightness-[0.92] contrast-[1.04]"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/35" />
-                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a0a0a]/95 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(13,27,22,0.02),rgba(13,27,22,0.40))]" />
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-[#0a0f0d]/92 via-transparent to-transparent" />
               </div>
 
-              <div className="flex h-[170px] flex-col justify-between p-5">
-                <div className="space-y-3">
-                  <p className="text-[11px] uppercase tracking-[0.32em] text-white/68">Tower {plan.tower}</p>
-                  <h3 className="text-2xl font-semibold tracking-tight text-white">{plan.title}</h3>
+              <div className="flex h-[11.9rem] flex-col justify-between p-5">
+                <div className="space-y-2">
+                  <p className="text-[10px] uppercase tracking-[0.34em] text-[#9b7a45]">Unit Type</p>
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="text-[1.1rem] font-semibold tracking-tight text-[#f4efe7] leading-tight">{plan.unitType}</h3>
+                    <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.28em] text-white/62">
+                      Tower {plan.tower}
+                    </span>
+                  </div>
                 </div>
 
-                <div className="space-y-2">
-                  <p className="text-xl font-semibold tracking-tight text-[#c6a66a]">{plan.price}</p>
+                <div className="space-y-3">
+                  <div className="flex items-end justify-between gap-3">
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.32em] text-white/45">Starting From</p>
+                      <p className="mt-1 text-[1.15rem] font-semibold tracking-tight text-[#c6a66a]">{plan.price}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-[10px] uppercase tracking-[0.32em] text-white/45">Sq Ft</p>
+                      <p className="mt-1 text-sm font-medium text-[#f4efe7]">{plan.size}</p>
+                    </div>
+                  </div>
                   <button
                     type="button"
                     onClick={dispatchLeadPopup}
-                    className="inline-flex h-12 w-full items-center justify-center rounded-full border border-[#c6a66a] bg-transparent px-5 text-sm font-semibold uppercase tracking-[0.26em] text-[#f4efe7] transition duration-300 hover:bg-[#c6a66a] hover:text-[#111111]"
+                    className="inline-flex h-11 w-full items-center justify-center rounded-full border border-[#c6a66a]/30 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] px-5 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-[#f4efe7] transition duration-300 hover:-translate-y-0.5 hover:border-[#c6a66a]/48 hover:bg-[#c6a66a] hover:text-[#111111] hover:shadow-[0_12px_26px_rgba(198,166,106,0.18)]"
                   >
-                    Request Access
+                    Enquire Now
                   </button>
                 </div>
               </div>

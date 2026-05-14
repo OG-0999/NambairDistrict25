@@ -157,26 +157,26 @@ export function Amenities() {
   ];
 
   return (
-    <section id="amenities" className="py-24 bg-[#efe9df] border-t border-[#e4dbca] relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-125 bg-primary/5 blur-[120px] pointer-events-none rounded-full"></div>
+    <section id="amenities" className="luxury-green-section py-24 border-t border-white/8 relative overflow-hidden">
+      <div className="luxury-green-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-125 pointer-events-none rounded-full"></div>
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="text-center mb-16"
+          className="text-center mb-14 sm:mb-16"
         >
-          <div className="flex items-center justify-center space-x-4 mb-6">
-            <div className="h-px w-12 bg-primary"></div>
-            <span className="text-primary tracking-[0.2em] uppercase text-sm font-medium">World Class Lifestyle</span>
-            <div className="h-px w-12 bg-primary"></div>
+          <div className="flex items-center justify-center space-x-3 sm:space-x-4 mb-5 sm:mb-6">
+            <div className="h-px w-10 sm:w-12 bg-[#c9b68a]/45"></div>
+            <span className="luxury-green-eyebrow text-[#e8e1d3] tracking-[0.24em] uppercase text-[0.68rem] sm:text-sm font-medium">World Class Lifestyle</span>
+            <div className="h-px w-10 sm:w-12 bg-[#c9b68a]/45"></div>
           </div>
-          <h2 className="text-3xl md:text-5xl font-serif text-[#1f1b18]">A DISTRICT IN ITSELF</h2>
+          <h2 className="luxury-green-title text-3xl md:text-5xl font-serif text-[#f2ede4]">A DISTRICT IN ITSELF</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {categories.map((cat, idx) => (
             <motion.div
               key={idx}
@@ -187,12 +187,12 @@ export function Amenities() {
                 hidden: { opacity: 0, y: 30 },
                 visible: { opacity: 1, y: 0, transition: { delay: idx * 0.1, duration: 0.6 } }
               }}
-              className="bg-[#fcfaf7] border border-[#e4dbca] rounded-2xl p-6 shadow-[0_16px_36px_rgba(17,17,17,0.08)] hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_20px_44px_rgba(17,17,17,0.12)] transition-all duration-500 group relative"
+              className="luxury-green-card group relative rounded-2xl p-5 sm:p-6 transition-all duration-500"
             >
-              <h3 className="text-xl font-serif text-[#1f1b18] mb-4 group-hover:text-primary transition-colors">{cat.title}</h3>
-              <p className="text-[#4c4339] text-sm leading-relaxed">{cat.items}</p>
+              <h3 className="text-lg sm:text-xl font-serif text-[#f4efe7] mb-3 sm:mb-4 transition-colors duration-300 group-hover:text-[#d7c79a]">{cat.title}</h3>
+              <p className="text-[#c4c0b5] text-sm leading-relaxed">{cat.items}</p>
               
-              <div className="absolute top-8 right-8 w-2 h-2 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute top-7 right-7 w-2 h-2 rounded-full bg-[#c9b68a] opacity-60 transition-opacity group-hover:opacity-100"></div>
             </motion.div>
           ))}
         </div>
@@ -205,22 +205,24 @@ export function Clubhouse() {
   const [viewerOpen, setViewerOpen] = useState(false);
 
   return (
-    <section className="py-0 bg-[#f5f2ec]">
+    <section className="luxury-green-section py-0 relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(201,182,138,0.08),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(13,27,22,0.32),transparent_40%)]"></div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="aspect-square lg:aspect-auto lg:h-full relative cursor-pointer"
+          className="aspect-[4/3] sm:aspect-square lg:aspect-auto lg:h-full relative cursor-pointer"
           onClick={() => setViewerOpen(true)}
         >
           <img src="/images/clubhouse.png" alt="Clubhouse" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-linear-to-r from-transparent to-[#f5f2ec] hidden lg:block"></div>
-          <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 text-white lg:hidden">
-            <div className="rounded-3xl border border-white/15 bg-[#12100d]/55 px-4 py-4 backdrop-blur-md">
-              <p className="text-[10px] uppercase tracking-[0.35em] text-white/60">Tap to enlarge</p>
-              <p className="mt-2 text-lg font-serif">The 7 Acre Clubhouse</p>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(13,27,22,0.10),rgba(13,27,22,0.28)_55%,rgba(13,27,22,0.45))] hidden lg:block"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(13,27,22,0.08),rgba(13,27,22,0.24))]"></div>
+          <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 md:p-8 text-white lg:hidden">
+            <div className="rounded-3xl border border-white/12 bg-[#0d1b16]/55 px-4 py-4 backdrop-blur-md shadow-[0_12px_30px_rgba(0,0,0,0.2)]">
+              <p className="text-[10px] uppercase tracking-[0.35em] text-[#e8e1d3]/65">Tap to enlarge</p>
+              <p className="mt-2 text-lg font-serif text-[#f2ede4]">The 7 Acre Clubhouse</p>
             </div>
           </div>
         </motion.div>
@@ -230,26 +232,26 @@ export function Clubhouse() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="flex flex-col justify-center p-10 lg:p-20"
+          className="flex flex-col justify-center bg-[linear-gradient(180deg,#112019_0%,#14241d_52%,#1a2b22_100%)] p-6 sm:p-10 lg:p-20"
         >
-          <div className="inline-block bg-primary/10 border border-primary/30 text-primary px-4 py-1 text-xs tracking-widest uppercase mb-8 w-max">
+          <div className="inline-block rounded-full border border-[#c9b68a]/20 bg-white/5 px-4 py-1 text-xs tracking-[0.34em] uppercase mb-7 sm:mb-8 w-max text-[#d7c79a] shadow-[0_8px_20px_rgba(0,0,0,0.14)]">
             2.5 Lakh+ Sq.Ft
           </div>
           
-          <h2 className="text-3xl md:text-4xl font-serif text-[#1f1b18] leading-tight mb-6">
+          <h2 className="text-3xl md:text-4xl font-serif text-[#f2ede4] leading-tight mb-5 sm:mb-6">
             THE 7 ACRE CLUBHOUSE
           </h2>
           
-          <p className="text-[#4a433c] text-base font-light leading-relaxed mb-6">
+          <p className="max-w-xl text-[#c4c0b5] text-base font-light leading-relaxed mb-5 sm:mb-6">
             An expansive 2.5 lakh+ sq.ft destination for sports, fitness, wellness, and recreation, designed as the
             social heart of District 25.
           </p>
-          <p className="text-[#4a433c] text-base font-light leading-relaxed mb-10">
+          <p className="max-w-xl text-[#b7b2a6] text-base font-light leading-relaxed mb-8 sm:mb-10">
             Olympic pools, studios, cafes, lounges, and event spaces come together to create a lifestyle hub that
             feels exclusive, effortless, and alive.
           </p>
 
-          <button className="bg-[#fcfaf7] border border-primary/50 text-[#1f1b18] px-7 py-3 font-medium tracking-widest uppercase text-sm transition-all duration-500 hover:bg-primary/15 hover:shadow-[0_12px_30px_rgba(200,169,106,0.25)] w-max">
+          <button className="w-max rounded-full border border-[#c9b68a]/24 bg-white/5 px-7 py-3 font-medium tracking-widest uppercase text-sm text-[#f2ede4] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/8 hover:shadow-[0_14px_28px_rgba(0,0,0,0.24)]">
             Explore Amenities
           </button>
         </motion.div>

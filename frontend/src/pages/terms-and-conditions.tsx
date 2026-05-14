@@ -3,24 +3,28 @@ import { Footer } from '@/components/FooterSections';
 
 const terms = [
   {
-    title: 'Project Information',
-    body: 'Project details, layouts, amenities, and specifications are subject to change based on approvals, development updates, and final execution.'
+    title: 'Informational Purpose',
+    body: 'This website is presented for informational and marketing purposes only. It does not constitute a binding offer, warranty, or contractual commitment.'
   },
   {
-    title: 'Artistic Representation',
-    body: 'Images, renders, and visual materials on this website are artistic impressions and may differ from the final delivered product.'
+    title: 'Data Usage Disclaimer',
+    body: 'Any personal information you submit may be used to respond to your enquiry, share project details, and provide related updates connected to this development.'
   },
   {
-    title: 'Pricing',
-    body: 'Prices and offers may vary without prior notice. Final pricing is determined by the developer or authorized sales team at the time of enquiry or booking.'
+    title: 'Lead Inquiry Consent',
+    body: 'By submitting a lead or enquiry form, you confirm that your details are shared voluntarily and that you consent to being contacted regarding the project.'
   },
   {
-    title: 'Contact Consent',
-    body: 'When you submit an enquiry, you consent to being contacted regarding the project by the website team and associated sales representatives.'
+    title: 'Communication Authorization',
+    body: 'You authorize the website representatives, sales associates, and authorized marketing partners to contact you via call, SMS, WhatsApp, or email.'
   },
   {
-    title: 'Marketing Platform',
-    body: 'This website functions as a marketing and lead generation platform associated with the developer and its authorized sales teams.'
+    title: 'Developer Marketing Disclaimer',
+    body: 'This website operates as a promotional and lead-generation platform associated with the developer and its authorized sales teams.'
+  },
+  {
+    title: 'No Misuse Clause',
+    body: 'You agree not to misuse this website, submit false details, attempt unauthorized access, or use the content in a manner inconsistent with lawful enquiry and marketing activity.'
   }
 ];
 
@@ -28,10 +32,10 @@ export default function TermsAndConditions() {
   return (
     <div className="min-h-screen w-full bg-[#f6f1ea] text-[#2f281f] selection:bg-primary selection:text-white">
       <main className="container mx-auto px-4 sm:px-6 py-16 md:py-20">
-        <div className="mb-8 flex items-center">
+          <div className="mb-8 flex items-center">
           <a
             href="/"
-            className="inline-flex items-center gap-2 rounded-full border border-[#d9cfbf] bg-white/70 px-4 py-2 text-sm font-medium text-[#1f1a17] transition-all duration-300 hover:-translate-x-1 hover:border-[#c6a66a]/40 hover:bg-[#f8f1e6]"
+              className="inline-flex items-center gap-2 rounded-full border border-[#d9cfbf] bg-white/70 px-4 py-2 text-sm font-medium text-[#1f1a17] shadow-[0_8px_24px_rgba(17,17,17,0.05)] transition-all duration-300 hover:-translate-x-1 hover:border-[#c6a66a]/40 hover:bg-[#f8f1e6] hover:shadow-[0_12px_28px_rgba(17,17,17,0.08)]"
           >
             <span aria-hidden="true">←</span>
             <span>Back to Home</span>

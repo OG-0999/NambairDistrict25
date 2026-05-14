@@ -23,6 +23,44 @@ const initialValues: LeadPayload = {
   email: "",
 };
 
+export function InquiryConsentBlock() {
+  return (
+    <div className="mt-6 rounded-2xl border border-[#e8dcc8] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.96),rgba(248,243,235,0.96))] px-4 py-4 shadow-[0_10px_26px_rgba(17,17,17,0.05)] sm:px-5 sm:py-5">
+      <label className="flex items-start gap-3 text-sm leading-relaxed text-[#3a332b]">
+        <span className="mt-0.5 relative inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-[6px] border border-[#c6a66a] bg-[#111111] shadow-[0_0_0_1px_rgba(198,166,106,0.16)]">
+          <input
+            type="checkbox"
+            checked
+            readOnly
+            disabled
+            aria-label="Consent is required"
+            className="absolute inset-0 h-full w-full cursor-not-allowed opacity-0"
+          />
+          <svg aria-hidden="true" viewBox="0 0 20 20" className="h-3.5 w-3.5 text-[#f5f1e8]">
+            <path
+              fill="currentColor"
+              d="M7.6 13.2 4.5 10.1l-1.4 1.4 4.5 4.5 8.8-8.8-1.4-1.4z"
+            />
+          </svg>
+        </span>
+        <span className="text-[0.92rem] leading-7 text-[#3f372d]">
+          I authorize the website representatives to contact me via call, SMS, WhatsApp, or email regarding this project. I agree to the{' '}
+          <a href="/privacy-policy" className="font-medium text-[#2f6fed] underline decoration-transparent underline-offset-4 transition-colors duration-300 hover:decoration-current">
+            Privacy Policy
+          </a>{' '}
+          and{' '}
+          <a href="/terms-and-conditions" className="font-medium text-[#2f6fed] underline decoration-transparent underline-offset-4 transition-colors duration-300 hover:decoration-current">
+            Terms &amp; Conditions
+          </a>.
+        </span>
+      </label>
+      <p className="mt-3 text-[0.7rem] uppercase tracking-[0.28em] text-[#8a7c63]">
+        Consent is pre-approved and required for every enquiry.
+      </p>
+    </div>
+  );
+}
+
 export function MobileStickyInquiryCTA() {
   const openInquiry = () => {
     window.dispatchEvent(new CustomEvent("district25:open-lead-popup"));
@@ -331,22 +369,7 @@ export function ScrollLeadPopup() {
                   })}
                 </div>
 
-                <div className="mt-6 rounded-2xl border border-[#e8dcc8] bg-[#fbf8f1] px-4 py-4">
-                  <label className="flex items-start gap-3 text-sm leading-relaxed text-[#3a332b]">
-                    <input
-                      type="checkbox"
-                      defaultChecked
-                      className="mt-1 h-4 w-4 rounded border-[#c6a66a] text-[#111111] accent-[#111111]"
-                    />
-                    <span>
-                      I authorize the team to contact me via call, SMS, WhatsApp or email regarding this project.
-                    </span>
-                  </label>
-
-                  <p className="mt-3 text-xs leading-relaxed text-[#5b5144]">
-                    By proceeding, you agree to the <a href="/privacy-policy" className="text-[#2f6fed] transition-all duration-300 hover:underline">Privacy Policy</a> and <a href="/terms-and-conditions" className="text-[#2f6fed] transition-all duration-300 hover:underline">Terms &amp; Conditions</a>.
-                  </p>
-                </div>
+                <InquiryConsentBlock />
 
                 <div className="mt-6 flex flex-col items-center gap-3">
                   <button

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, ArrowUp } from 'lucide-react';
 import { submitLead, normalizePhone, splitFullName, isValidIndianPhone, EMAIL_REGEX } from '@/lib/lead';
+import { InquiryConsentBlock } from '@/components/LeadForms';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -180,6 +181,10 @@ export function BookVisit() {
                   placeholder="Share your preferred move-in timeline or questions"
                   className="w-full min-w-0 bg-transparent border-b border-[#e4dbca] pb-2 text-[#1f1b18] focus:outline-none focus:border-primary transition-colors text-base resize-none min-h-30"
                 />
+              </div>
+
+              <div className="md:col-span-2">
+                <InquiryConsentBlock />
               </div>
 
               <div className="md:col-span-2 mt-4">

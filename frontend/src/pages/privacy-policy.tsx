@@ -49,7 +49,7 @@ export default function PrivacyPolicy() {
 
           <div className="space-y-6">
             {sections.map((section) => (
-              <section key={section.title} className="space-y-3 rounded-[24px] border border-[#ece3d4] bg-[#fcfaf7] p-5 md:p-6">
+              <section key={section.title} className="space-y-3 rounded-3xl border border-[#ece3d4] bg-[#fcfaf7] p-5 md:p-6">
                 <h2 className="text-xl md:text-2xl font-serif text-[#1d1b19]">{section.title}</h2>
                 <p className="text-[#5b5144] leading-relaxed">{section.body}</p>
               </section>

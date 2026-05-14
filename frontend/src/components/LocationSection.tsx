@@ -22,8 +22,8 @@ export function Location() {
   return (
     <section id="location" className="relative overflow-hidden bg-[#f6f1ea] py-20 md:py-28">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[-8rem] top-[-8rem] h-72 w-72 rounded-full bg-[#c6a66a]/10 blur-[120px]" />
-        <div className="absolute bottom-[-7rem] right-[-7rem] h-80 w-80 rounded-full bg-black/10 blur-[140px]" />
+        <div className="absolute -left-32 -top-32 h-72 w-72 rounded-full bg-[#c6a66a]/10 blur-[120px]" />
+        <div className="absolute -bottom-28 -right-28 h-80 w-80 rounded-full bg-black/10 blur-[140px]" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 md:px-8">
@@ -49,12 +49,12 @@ export function Location() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="overflow-hidden rounded-[24px] border border-[rgba(198,166,106,0.14)] bg-[#f5efe6] shadow-[0_24px_70px_rgba(17,17,17,0.10)]"
+            className="overflow-hidden rounded-3xl border border-[rgba(198,166,106,0.14)] bg-[#f5efe6] shadow-[0_24px_70px_rgba(17,17,17,0.10)]"
           >
             <iframe
               title="Nambiar District 25 Location"
               src={iframeSrc}
-              className="block h-[320px] w-full border-0 md:h-[500px]"
+              className="block h-80 w-full border-0 md:h-125"
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -68,7 +68,7 @@ export function Location() {
             transition={{ duration: 0.8 }}
             className="flex flex-col gap-6"
           >
-            <div className="rounded-[24px] border border-[#e4dbca] bg-white/90 p-6 md:p-7 shadow-[0_12px_36px_rgba(17,17,17,0.08)] backdrop-blur-sm">
+            <div className="rounded-3xl border border-[#e4dbca] bg-white/90 p-6 md:p-7 shadow-[0_12px_36px_rgba(17,17,17,0.08)] backdrop-blur-sm">
               <h3 className="mb-3 font-serif text-2xl md:text-3xl tracking-tight text-[#1f1a17]">
                 Address Details
               </h3>
@@ -101,7 +101,7 @@ export function Location() {
               ))}
             </div>
 
-            <div className="rounded-[24px] border border-[rgba(198,166,106,0.18)] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.86),rgba(248,243,235,0.92))] px-6 py-5 shadow-[0_12px_32px_rgba(200,169,106,0.08)]">
+            <div className="rounded-3xl border border-[rgba(198,166,106,0.18)] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.86),rgba(248,243,235,0.92))] px-6 py-5 shadow-[0_12px_32px_rgba(200,169,106,0.08)]">
               <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.32em] text-[#8A7C63]">Project Address</p>
               <p className="text-base font-medium leading-relaxed text-[#1f1a17]">
                 Nambiar District 25, Chandapura Dommasandra Road, Dommasandra, Bengaluru, Karnataka 562125

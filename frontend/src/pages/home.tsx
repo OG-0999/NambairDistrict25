@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoadingScreen, Navigation, Hero, HeroUSPStrip } from '@/components/HeroSections';
+import { Navigation, Hero, HeroUSPStrip } from '@/components/HeroSections';
 import { TrustBar, AboutProject, KeyHighlights } from '@/components/InfoSections';
 import { Gallery, Amenities, Clubhouse } from '@/components/FeatureSections';
 import { UnitPlans, Testimonials } from '@/components/PlanSections';
@@ -9,8 +9,7 @@ import { MobileStickyInquiryCTA, ScrollLeadPopup } from '@/components/LeadForms'
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-[#e7dfd2] text-foreground selection:bg-primary selection:text-white">
-      <LoadingScreen />
+    <div className="min-h-screen w-full overflow-x-hidden bg-transparent text-foreground selection:bg-primary selection:text-white">
       <Navigation />
       <FloatingElements />
       <ScrollLeadPopup />

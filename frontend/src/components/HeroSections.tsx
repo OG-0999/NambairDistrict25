@@ -19,7 +19,7 @@ export function Navigation() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#d8cab8]/30 bg-[#f6f1ea]/75 backdrop-blur-[12px] transition-all duration-300">
+    <header className="sticky top-0 z-50 w-full border-b border-[#d8cab8]/30 bg-[#f6f1ea]/75 backdrop-blur-md transition-all duration-300">
       <div className="container mx-auto grid h-20 grid-cols-[auto_1fr_auto] items-center gap-4 px-4 sm:px-6">
         <div className="flex items-center gap-3">
           <div className="rounded-full border border-[#bfa876]/30 bg-[#fff7ec] px-4 py-2 text-sm font-semibold tracking-[0.28em] text-[#4f4433] shadow-[0_6px_18px_rgba(0,0,0,0.06)]">
@@ -133,45 +133,6 @@ export function Navigation() {
   );
 }
 
-export function LoadingScreen() {
-  const [loading, setLoading] = useState(() => {
-    if (typeof window === 'undefined') {
-      return false;
-    }
-    return !window.matchMedia('(max-width: 768px)').matches;
-  });
-
-  useEffect(() => {
-    if (!loading) {
-      return;
-    }
-
-    const timer = window.setTimeout(() => {
-      setLoading(false);
-    }, 850);
-
-    return () => window.clearTimeout(timer);
-  }, [loading]);
-
-  return (
-    <AnimatePresence>
-      {loading && (
-        <motion.div
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.9 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#e7dfd2]"
-        >
-          <div className="text-3xl font-serif tracking-[0.2em] text-[#1f1b18]">NAMBIAR DISTRICT 25</div>
-        </motion.div>
-      )}
-
-    </AnimatePresence>
-  );
-}
-
-
 export function Hero() {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -190,19 +151,20 @@ export function Hero() {
     }
   };
 
-  const animationProps = isMobile
-    ? { initial: false, animate: { opacity: 1, y: 0 } }
-    : { initial: { opacity: 0, y: 18 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, ease: 'easeOut' } };
+  const animationProps = {
+    initial: false,
+    animate: { opacity: 1, y: 0 },
+  };
 
   return (
-    <section id="hero" className="relative flex min-h-[92vh] w-full items-center justify-center overflow-hidden bg-[#1f1b18]">
+    <section id="hero" className="relative flex min-h-[92vh] w-full items-center justify-center overflow-hidden bg-[#0d1b16]">
       <div className="absolute inset-0 z-0">
         <img
           src="/images/hero.png"
           alt="Nambiar District 25 Hero"
           className="motion-safe:animate-[pulse_24s_ease-in-out_infinite_alternate] h-full w-full scale-[1.02] object-cover"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.15),rgba(0,0,0,0.25))]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(13,27,22,0.18),rgba(13,27,22,0.3))]"></div>
       </div>
 
       <div className="relative z-10 container mx-auto grid grid-cols-1 items-center gap-6 px-4 pt-14 sm:px-6 sm:pt-16 lg:grid-cols-12">

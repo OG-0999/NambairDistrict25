@@ -105,15 +105,14 @@
   body {
     width: 100%;
     overflow-x: hidden;
+    background: transparent;
   }
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
     font-size: 1rem;
     line-height: 1.72;
-    background:
-      radial-gradient(circle at top, rgba(139, 107, 62, 0.12), transparent 34%),
-      linear-gradient(180deg, #ebe3d7 0%, #f5efe6 46%, #d8cab8 100%);
+    background: transparent;
     color: #2d2926;
     letter-spacing: 0.01em;
   }
@@ -121,6 +120,7 @@
   #root {
     min-height: 100%;
     overflow-x: hidden;
+    background: transparent;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -257,6 +257,121 @@
 
 .plan-carousel > *:hover {
   opacity: 1;
+}
+
+.luxury-plan-carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 1.25rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem clamp(1rem, 4vw, 2.5rem) 1rem;
+  margin-inline: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.luxury-plan-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.luxury-plan-carousel > * {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.luxury-plan-card {
+  width: clamp(18rem, 28vw, 23.5rem);
+  min-width: clamp(18rem, 28vw, 23.5rem);
+  max-width: clamp(18rem, 28vw, 23.5rem);
+  transform: translateZ(0);
+  will-change: transform, opacity, box-shadow;
+}
+
+@media (max-width: 1024px) {
+  .luxury-plan-carousel {
+    gap: 1rem;
+    padding-inline: 1rem;
+  }
+
+  .luxury-plan-card {
+    width: clamp(16.5rem, 60vw, 19rem);
+    min-width: clamp(16.5rem, 60vw, 19rem);
+    max-width: clamp(16.5rem, 60vw, 19rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .luxury-plan-carousel {
+    gap: 0.875rem;
+    padding-inline: 0.75rem;
+    scroll-padding-inline: 0.75rem;
+  }
+
+  .luxury-plan-card {
+    width: 85vw;
+    min-width: 85vw;
+    max-width: 85vw;
+  }
+}
+
+.luxury-green-section {
+  background:
+    radial-gradient(circle at top left, rgba(201, 182, 138, 0.08), transparent 26%),
+    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.04), transparent 28%),
+    linear-gradient(180deg, #0d1b16 0%, #112019 48%, #14241d 100%);
+  color: #f2ede4;
+}
+
+.luxury-green-glow {
+  background:
+    radial-gradient(circle, rgba(201, 182, 138, 0.14) 0%, rgba(201, 182, 138, 0.02) 34%, transparent 72%);
+  filter: blur(110px);
+  opacity: 0.8;
+}
+
+.luxury-green-title {
+  letter-spacing: -0.03em;
+}
+
+.luxury-green-eyebrow {
+  color: rgba(242, 237, 228, 0.84);
+}
+
+.luxury-green-card {
+  border: 1px solid rgba(201, 182, 138, 0.14);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(9, 19, 15, 0.32));
+  box-shadow:
+    0 20px 44px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+}
+
+.luxury-green-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 182, 138, 0.24);
+  box-shadow:
+    0 24px 52px rgba(0, 0, 0, 0.24),
+    0 0 0 1px rgba(201, 182, 138, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+  .luxury-green-section {
+    background:
+      radial-gradient(circle at top left, rgba(201, 182, 138, 0.07), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.03), transparent 34%),
+      linear-gradient(180deg, #0d1b16 0%, #112019 55%, #14241d 100%);
+  }
+
+  .luxury-green-card {
+    backdrop-filter: blur(8px);
+  }
 }
 
 .plan-card {
