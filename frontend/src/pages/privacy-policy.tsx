@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 
 import { Footer } from '@/components/FooterSections';
 import RealEstateDisclaimer from '@/components/RealEstateDisclaimer';
+import PremiumDarkDisclaimer from '@/components/PremiumDarkDisclaimer';
 
 const sections = [
   {
@@ -123,6 +124,7 @@ Our policy mentioned above discloses the privacy practices for Nambiar District 
       </main>
 
       <RealEstateDisclaimer />
+      <PremiumDarkDisclaimer />
       <Footer />
     </div>
   );

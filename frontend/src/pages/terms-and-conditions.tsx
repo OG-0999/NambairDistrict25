@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'wouter';
 
 import { Footer } from '@/components/FooterSections';
+import PremiumDarkDisclaimer from '@/components/PremiumDarkDisclaimer';
 
 const sections = [
   {
@@ -93,6 +94,7 @@ export default function TermsAndConditions() {
         </div>
       </main>
 
+      <PremiumDarkDisclaimer />
       <Footer />
     </div>
   );
