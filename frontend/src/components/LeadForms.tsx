@@ -15,6 +15,11 @@ type FieldConfig = {
 };
 
 const STORAGE_KEY = "district25-lead-popup-seen";
+const LEAD_POPUP_EVENT = "district25:open-lead-popup";
+
+type LeadPopupSourceDetail = {
+  source?: string;
+};
 
 const initialValues: LeadPayload = {
   firstName: "",
@@ -22,6 +27,10 @@ const initialValues: LeadPayload = {
   mobileNumber: "",
   email: "",
 };
+
+export function openLeadPopup(source?: string) {
+  window.dispatchEvent(new CustomEvent<LeadPopupSourceDetail>(LEAD_POPUP_EVENT, { detail: { source } }));
+}
 
 export function InquiryConsentBlock() {
   return (
@@ -63,7 +72,7 @@ export function InquiryConsentBlock() {
 
 export function MobileStickyInquiryCTA() {
   const openInquiry = () => {
-    window.dispatchEvent(new CustomEvent("district25:open-lead-popup"));
+    openLeadPopup();
   };
 
   return (
@@ -92,6 +101,7 @@ export function ScrollLeadPopup() {
   const [errors, setErrors] = useState<LeadErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [sourceLabel, setSourceLabel] = useState<string | null>(null);
 
   const fields = useMemo<FieldConfig[]>(
     () => [
@@ -114,6 +124,7 @@ export function ScrollLeadPopup() {
     setStatus("idle");
     setErrors({});
     setSubmitError(null);
+    setSourceLabel(null);
     setValues(initialValues);
   }, []);
 
@@ -127,7 +138,10 @@ export function ScrollLeadPopup() {
   }, []);
 
   useEffect(() => {
-    const handleOpenPopup = () => {
+    const handleOpenPopup = (event: Event) => {
+      const source = (event as CustomEvent<LeadPopupSourceDetail>).detail?.source?.trim();
+
+      setSourceLabel(source ?? null);
       setHasSeen(true);
       setIsOpen(true);
 
@@ -136,8 +150,8 @@ export function ScrollLeadPopup() {
       }
     };
 
-    window.addEventListener("district25:open-lead-popup", handleOpenPopup);
-    return () => window.removeEventListener("district25:open-lead-popup", handleOpenPopup);
+    window.addEventListener(LEAD_POPUP_EVENT, handleOpenPopup);
+    return () => window.removeEventListener(LEAD_POPUP_EVENT, handleOpenPopup);
   }, []);
 
   useEffect(() => {
@@ -287,6 +301,11 @@ export function ScrollLeadPopup() {
                 <p className="text-sm text-[#666666]">
                   Share your details to receive priority pricing, layouts, and launch updates.
                 </p>
+                {sourceLabel ? (
+                  <p className="inline-flex rounded-full border border-primary/20 bg-primary/8 px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-[#6f5f49]">
+                    Source: {sourceLabel}
+                  </p>
+                ) : null}
               </div>
 
               <form className="mt-8" noValidate onSubmit={handleSubmit}>

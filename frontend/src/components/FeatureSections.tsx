@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 
 import { ImageLightbox, type LightboxImage } from '@/components/ImageLightbox';
+import { openLeadPopup } from '@/components/LeadForms';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -66,9 +67,7 @@ export function Gallery() {
 
   const closeViewer = () => setViewerOpen(false);
 
-  const onEnquire = () => {
-    window.dispatchEvent(new CustomEvent('district25:open-lead-popup'));
-  };
+  const onEnquire = () => openLeadPopup();
 
   return (
     <section className="py-24 bg-[#f5f2ec]">
@@ -213,7 +212,7 @@ export function Clubhouse() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="aspect-[4/3] sm:aspect-square lg:aspect-auto lg:h-full relative cursor-pointer"
+          className="aspect-4/3 sm:aspect-square lg:aspect-auto lg:h-full relative cursor-pointer"
           onClick={() => setViewerOpen(true)}
         >
           <img src="/images/clubhouse.png" alt="Clubhouse" className="w-full h-full object-cover" />
@@ -251,7 +250,11 @@ export function Clubhouse() {
             feels exclusive, effortless, and alive.
           </p>
 
-          <button className="w-max rounded-full border border-[#c9b68a]/24 bg-white/5 px-7 py-3 font-medium tracking-widest uppercase text-sm text-[#f2ede4] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/8 hover:shadow-[0_14px_28px_rgba(0,0,0,0.24)]">
+          <button
+            type="button"
+            onClick={() => openLeadPopup('Explore Amenities')}
+            className="w-max rounded-full border border-[#c9b68a]/24 bg-white/5 px-7 py-3 font-medium tracking-widest uppercase text-sm text-[#f2ede4] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/8 hover:shadow-[0_14px_28px_rgba(0,0,0,0.24)]"
+          >
             Explore Amenities
           </button>
         </motion.div>
@@ -263,7 +266,7 @@ export function Clubhouse() {
         activeIndex={0}
         onActiveIndexChange={() => undefined}
         onOpenChange={setViewerOpen}
-        onEnquire={() => window.dispatchEvent(new CustomEvent('district25:open-lead-popup'))}
+        onEnquire={() => openLeadPopup('The 7 Acre Clubhouse')}
       />
     </section>
   );

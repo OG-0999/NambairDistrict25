@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Download, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
-const BROCHURE_URL = '/brochure/nbr-district25-brochure.pdf';
+import { openLeadPopup } from '@/components/LeadForms';
 
 // Placeholder export to satisfy imports in home.tsx
 export function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const openLeadPopup = () => {
-    window.dispatchEvent(new CustomEvent('district25:open-lead-popup'));
+  const handleOpenLeadPopup = () => {
+    openLeadPopup();
   };
 
   const navLinks = [
@@ -45,7 +45,7 @@ export function Navigation() {
         <div className="flex items-center justify-end gap-3">
           <button
             type="button"
-            onClick={openLeadPopup}
+            onClick={handleOpenLeadPopup}
             className="inline-flex items-center justify-center rounded-full border border-[rgba(198,166,106,0.4)] bg-[#111111] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.24em] text-[#f5f1e8] shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(198,166,106,0.62)] hover:shadow-[0_14px_30px_rgba(0,0,0,0.24),0_0_24px_rgba(198,166,106,0.22)] sm:px-5 sm:py-3 sm:text-sm"
             aria-label="Enquire"
           >
@@ -214,14 +214,13 @@ export function Hero() {
             >
               Submit Inquiry
             </button>
-            <a
-              href={BROCHURE_URL}
-              download="nbr-district25-brochure.pdf"
+            <button
+              type="button"
+              onClick={() => openLeadPopup('Download Brochure')}
               className="inline-flex items-center gap-2 border border-[#f1ece4]/45 bg-[#3b342d] px-8 py-3 text-sm font-medium uppercase tracking-widest text-[#f8f4ee] transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#2a2522] hover:shadow-[0_12px_30px_rgba(0,0,0,0.3)]"
             >
-              <Download size={14} />
               Download Brochure
-            </a>
+            </button>
           </motion.div>
         </div> {/* Close .lg:col-span-8 */}
       </div> {/* Close grid container */}
