@@ -6,6 +6,7 @@ import { UnitPlans, Testimonials } from '@/components/PlanSections';
 import { Location } from '@/components/LocationSection';
 import { BookVisit, Footer, FloatingElements } from '@/components/FooterSections';
 import { MobileStickyInquiryCTA, ScrollLeadPopup } from '@/components/LeadForms';
+import RealEstateDisclaimer from '@/components/RealEstateDisclaimer';
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
         <BookVisit />
       </main>
 
+      <RealEstateDisclaimer />
       <Footer />
     </div>
   );
