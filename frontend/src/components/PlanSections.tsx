@@ -57,7 +57,7 @@ const unitPlans: PlanCard[] = [
   {
     unitType: '3 BHK',
     image: unit3BhkLarge,
-    price: '₹2.45 Cr*',
+    price: '₹1.47 Cr*',
     tower: '09',
     size: '1695 sq ft',
     phase: 'Starting From'
