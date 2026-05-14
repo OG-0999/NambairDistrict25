@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, ArrowUp } from 'lucide-react';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import { submitLead, normalizePhone, splitFullName, isValidIndianPhone, EMAIL_REGEX } from '@/lib/lead';
 import { InquiryConsentBlock } from '@/components/LeadForms';
 
@@ -220,6 +220,21 @@ export function BookVisit() {
 }
 
 export function Footer() {
+  const [, setLocation] = useLocation();
+
+  const scrollToDisclaimer = () => {
+    const el = document.getElementById('site-disclaimer');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    // Navigate to home and then scroll after a short delay
+    setLocation('/');
+    setTimeout(() => {
+      document.getElementById('site-disclaimer')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 350);
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -243,12 +258,13 @@ export function Footer() {
           
           <div>
             <h4 className="text-[#1f1b18] font-serif text-base mb-6">Quick Links</h4>
-            <ul className="space-y-4 text-[#4c4339] text-sm uppercase tracking-wider">
-              <li><a href="#overview" className="hover:text-primary transition-colors">Overview</a></li>
-              <li><a href="#amenities" className="hover:text-primary transition-colors">Amenities</a></li>
-              <li><a href="#location" className="hover:text-primary transition-colors">Location</a></li>
-              <li><Link href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
-            </ul>
+              <ul className="space-y-4 text-[#4c4339] text-sm uppercase tracking-wider">
+                <li><a href="#overview" className="hover:text-primary transition-colors">Overview</a></li>
+                <li><a href="#amenities" className="hover:text-primary transition-colors">Amenities</a></li>
+                <li><a href="#location" className="hover:text-primary transition-colors">Location</a></li>
+                <li><Link href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms-and-conditions" className="hover:text-primary transition-colors">Terms &amp; Conditions</Link></li>
+              </ul>
           </div>
 
           <div>
@@ -264,6 +280,16 @@ export function Footer() {
           <p className="max-w-3xl mx-auto text-center text-[0.72rem] leading-relaxed text-[#7d7267]">
             This website is for informational purposes only and does not constitute an offer to avail any service. Prices, specifications and availability are subject to change without notice. Images are artistic impressions and indicative in nature.
           </p>
+        </div>
+
+        <div className="mt-6 flex items-center justify-center">
+          <div className="flex flex-wrap gap-4 text-xs text-[#6b6259]">
+            <Link href="/privacy-policy" className="text-[#0066cc] hover:underline">Privacy Policy</Link>
+            <span className="text-[#d7c79a]/40">•</span>
+            <Link href="/terms-and-conditions" className="text-[#0066cc] hover:underline">Terms &amp; Conditions</Link>
+            <span className="text-[#d7c79a]/40">•</span>
+            <button onClick={scrollToDisclaimer} className="text-[#0066cc] hover:underline">Disclaimer</button>
+          </div>
         </div>
 
         <div className="border-t border-[#e4dbca] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">

@@ -2,108 +2,56 @@ import { motion } from 'framer-motion';
 import { Link } from 'wouter';
 
 const RealEstateDisclaimer = () => {
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      },
-    },
+  const variants = {
+    hidden: { opacity: 0, y: 18 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7 } }
   };
 
   return (
     <motion.section
-      variants={containerVariants}
+      id="site-disclaimer"
+      variants={variants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      className="w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#f6f1ea]/30 to-transparent"
+      viewport={{ once: true, amount: 0.25 }}
+      className="w-full px-4 sm:px-6 lg:px-8 py-10 bg-[#f6f1ea]"
     >
-      <div className="mx-auto max-w-4xl">
-        {/* Main disclaimer card */}
-        <div className="relative rounded-2xl border border-[#d7c79a]/40 bg-white/60 backdrop-blur-sm px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12 shadow-sm hover:shadow-md transition-shadow duration-300">
-          {/* Gold accent top border */}
-          <div className="absolute top-0 left-8 right-8 h-0.5 bg-gradient-to-r from-transparent via-[#c6a66a] to-transparent rounded-full" />
+      <div className="mx-auto max-w-5xl">
+        <div className="rounded-xl border border-[#e4dbca] bg-white/90 shadow-[0_18px_48px_rgba(17,17,17,0.06)] p-6 sm:p-8 lg:p-10">
+          <div className="flex items-start justify-between gap-6">
+            <div className="flex-1">
+              <h3 className="font-serif text-xl sm:text-2xl text-[#1f1b18] font-semibold mb-3">Disclaimer</h3>
+              <div className="prose prose-sm sm:prose-base text-[#44403b] max-w-none">
+                <p>
+                  We are an authorized channel partner with many developers. The content provided on this website is for information purposes only and does not constitute an offer to avail any service. The prices mentioned are subject to change without prior notice, and the availability of properties mentioned is not guaranteed.
+                </p>
+                <p>
+                  The images displayed on the website are for representation purposes only and may not reflect the actual properties accurately. Please note that this is the official website of an authorized marketing partner. We may share data with Real Estate Regulatory Authority (RERA) registered brokers/companies for further processing as required. We may also send updates and information to the mobile number or email ID registered with us.
+                </p>
+                <p>
+                  All rights reserved. The content, design, and information on this website are protected by copyright and other intellectual property rights. Any unauthorized use or reproduction of the content may violate applicable laws. For accurate and up-to-date information regarding services, pricing, availability, and any other details, it is advisable to contact us directly through the provided contact information on this website.
+                </p>
+              </div>
+            </div>
 
-          {/* Disclaimer heading */}
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0d1b16] mb-6 sm:mb-8 tracking-tight">
-            Disclaimer
-          </h2>
-
-          {/* Main disclaimer text */}
-          <div className="space-y-4 sm:space-y-6 mb-8 sm:mb-10">
-            <p className="text-sm sm:text-base leading-relaxed text-[#1a1a1a]/85 font-light">
-              The information provided on this website is for general informational and marketing purposes only and does not constitute an offer, invitation to offer, or legal commitment of any nature. All project details including pricing, floor plans, specifications, amenities, images, dimensions, and availability are{' '}
-              <span className="font-semibold text-[#0d1b16]">subject to change without prior notice</span> at the sole discretion of the developer.
-            </p>
-
-            <p className="text-sm sm:text-base leading-relaxed text-[#1a1a1a]/85 font-light">
-              Images, renders, visuals, and illustrations are{' '}
-              <span className="font-semibold text-[#0d1b16]">artistic impressions</span> intended for presentation purposes only. Actual construction, layouts, materials, and specifications may vary.
-            </p>
-
-            <p className="text-sm sm:text-base leading-relaxed text-[#1a1a1a]/85 font-light">
-              By submitting your details through this website, you consent to being contacted by authorized representatives regarding the project through call, SMS, WhatsApp, or email communication.
-            </p>
-
-            <p className="text-sm sm:text-base leading-relaxed text-[#1a1a1a]/85 font-light">
-              This website is an independent marketing platform associated with the project and is not intended to replace official documentation provided by the developer. Please verify all information directly with the authorized sales team before making any purchasing decisions.
-            </p>
-          </div>
-
-          {/* Policy links section */}
-          <div className="mb-8 sm:mb-10 pb-8 sm:pb-10 border-b border-[#d7c79a]/20">
-            <p className="text-xs sm:text-sm text-[#1a1a1a]/70 mb-3 font-light">
-              For more details, please review our:
-            </p>
-            <div className="flex flex-wrap gap-4 sm:gap-6">
-              <Link
-                href="/privacy-policy"
-                className="text-[#0066cc] hover:text-[#004499] hover:underline text-sm sm:text-base font-medium transition-colors duration-200"
-              >
-                Privacy Policy
-              </Link>
-              <span className="text-[#d7c79a]/40">•</span>
-              <Link
-                href="/terms-and-conditions"
-                className="text-[#0066cc] hover:text-[#004499] hover:underline text-sm sm:text-base font-medium transition-colors duration-200"
-              >
-                Terms & Conditions
-              </Link>
+            <div className="hidden sm:flex sm:shrink-0 sm:flex-col sm:items-end sm:justify-start">
+              <div className="text-sm text-[#7d7267] mb-2">Quick Links</div>
+              <div className="flex flex-col items-end gap-2">
+                <Link href="/privacy-policy" className="text-[#0066cc] hover:underline">Privacy Policy</Link>
+                <Link href="/terms-and-conditions" className="text-[#0066cc] hover:underline">Terms &amp; Conditions</Link>
+              </div>
             </div>
           </div>
 
-          {/* RERA / Legal notes footer */}
-          <div className="space-y-2">
-            <p className="text-xs sm:text-sm text-[#1a1a1a]/70 font-light mb-3">
-              Notice
-            </p>
-            <div className="flex flex-col gap-2 text-xs sm:text-sm text-[#1a1a1a]/75">
-              <div className="flex items-start gap-2">
-                <span className="text-[#c6a66a] font-bold mt-0.5">•</span>
-                <span className="font-light">Terms & Conditions Apply</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-[#c6a66a] font-bold mt-0.5">•</span>
-                <span className="font-light">Prices Subject To Change</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-[#c6a66a] font-bold mt-0.5">•</span>
-                <span className="font-light">Artist Impressions Used for Representation</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-[#c6a66a] font-bold mt-0.5">•</span>
-                <span className="font-light">Inventory Subject To Availability</span>
-              </div>
+          <div className="mt-6 pt-4 border-t border-[#efe7d8]">
+            <div className="flex flex-wrap gap-3 text-xs text-[#6b6259]">
+              <span className="inline-flex items-center gap-2">• Terms &amp; Conditions Apply</span>
+              <span className="inline-flex items-center gap-2">• Prices Subject To Change</span>
+              <span className="inline-flex items-center gap-2">• Artist Impressions Used</span>
+              <span className="inline-flex items-center gap-2">• Inventory Subject To Availability</span>
             </div>
           </div>
         </div>
-
-        {/* Subtle bottom accent */}
-        <div className="mt-6 h-0.5 w-12 mx-auto bg-gradient-to-r from-[#c6a66a] to-[#d7c79a]/30 rounded-full" />
       </div>
     </motion.section>
   );

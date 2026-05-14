@@ -69,6 +69,15 @@ export default function TermsAndConditions() {
             </p>
           </div>
 
+          {/* TERMS & CONDITIONS CONTENT PLACEHOLDER */}
+          <div className="mb-8 rounded-2xl border border-[#ece3d4] bg-[#fcfaf7] p-5 md:p-6">
+            <h2 className="text-sm uppercase tracking-[0.2em] text-[#7d7267] mb-3">TERMS CONTENT PLACEHOLDER</h2>
+            <div className="text-sm text-[#5b5144] leading-relaxed">
+              <p className="mb-2">PASTE_TERMS_AND_CONDITIONS_HERE</p>
+              <p className="text-xs text-[#7d7267]">(Replace the above placeholder with the final Terms &amp; Conditions content when ready.)</p>
+            </div>
+          </div>
+
           <div className="space-y-6">
             {sections.map((section) => (
               <section key={section.title} className="space-y-3 rounded-3xl border border-[#ece3d4] bg-[#fcfaf7] p-5 md:p-6">
