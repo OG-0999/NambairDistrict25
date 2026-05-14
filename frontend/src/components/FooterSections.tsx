@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, ArrowUp } from 'lucide-react';
+import { Link } from 'wouter';
 import { submitLead, normalizePhone, splitFullName, isValidIndianPhone, EMAIL_REGEX } from '@/lib/lead';
 import { InquiryConsentBlock } from '@/components/LeadForms';
 
@@ -246,7 +247,7 @@ export function Footer() {
               <li><a href="#overview" className="hover:text-primary transition-colors">Overview</a></li>
               <li><a href="#amenities" className="hover:text-primary transition-colors">Amenities</a></li>
               <li><a href="#location" className="hover:text-primary transition-colors">Location</a></li>
-              <li><a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
+              <li><Link href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
 

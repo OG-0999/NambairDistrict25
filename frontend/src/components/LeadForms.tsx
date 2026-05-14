@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import { Link } from "wouter";
 import { cn } from "@/lib/utils";
 import { LeadPayload, normalizePhone, submitLead, validateLead } from "@/lib/lead";
 
@@ -54,13 +55,13 @@ export function InquiryConsentBlock() {
         </span>
         <span className="text-[0.92rem] leading-7 text-[#3f372d]">
           I authorize the website representatives to contact me via call, SMS, WhatsApp, or email regarding this project. I agree to the{' '}
-          <a href="/privacy-policy" className="font-medium text-[#2f6fed] underline decoration-transparent underline-offset-4 transition-colors duration-300 hover:decoration-current">
+          <Link href="/privacy-policy" className="font-medium text-[#2f6fed] underline decoration-transparent underline-offset-4 transition-colors duration-300 hover:decoration-current">
             Privacy Policy
-          </a>{' '}
+          </Link>{' '}
           and{' '}
-          <a href="/terms-and-conditions" className="font-medium text-[#2f6fed] underline decoration-transparent underline-offset-4 transition-colors duration-300 hover:decoration-current">
+          <Link href="/terms-and-conditions" className="font-medium text-[#2f6fed] underline decoration-transparent underline-offset-4 transition-colors duration-300 hover:decoration-current">
             Terms &amp; Conditions
-          </a>.
+          </Link>.
         </span>
       </label>
       <p className="mt-3 text-[0.7rem] uppercase tracking-[0.28em] text-[#8a7c63]">
