@@ -266,7 +266,7 @@ export function ScrollLeadPopup() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
-          className="fixed inset-0 z-200 flex items-center justify-center bg-[#111111]/15 px-4 py-8 backdrop-blur-md"
+          className="fixed inset-0 z-200 flex items-center justify-center bg-[#111111]/15 px-3 py-3 sm:px-4 sm:py-8 backdrop-blur-md"
           onClick={handleOverlayClick}
         >
           <motion.div
@@ -277,7 +277,7 @@ export function ScrollLeadPopup() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="lead-popup-title"
-            className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-[#E6E6E6] bg-white/90 p-6 sm:p-8 shadow-[0_30px_80px_rgba(17,17,17,0.15)] backdrop-blur-2xl"
+            className="relative w-full max-w-2xl max-h-[calc(100dvh-1.5rem)] overflow-y-auto overflow-x-hidden rounded-3xl border border-[#E6E6E6] bg-white/90 p-4 shadow-[0_30px_80px_rgba(17,17,17,0.15)] backdrop-blur-2xl sm:max-h-[calc(100vh-4rem)] sm:p-8"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-primary/10 via-white/70 to-white"></div>
@@ -287,13 +287,13 @@ export function ScrollLeadPopup() {
               type="button"
               onClick={closePopup}
               aria-label="Close lead popup"
-              className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center border border-[#E6E6E6] text-[#777777] transition-colors hover:border-primary/50 hover:text-primary"
+              className="sticky top-0 z-20 ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-[#E6E6E6] bg-white/90 text-[#777777] shadow-[0_8px_18px_rgba(17,17,17,0.06)] transition-colors hover:border-primary/50 hover:text-primary sm:absolute sm:right-4 sm:top-4 sm:bg-transparent sm:shadow-none"
             >
               <X size={18} />
             </button>
 
             <div className="relative z-10">
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3 pr-10 sm:pr-0">
                 <p className="text-[0.6rem] uppercase tracking-[0.5em] text-primary/80">Signature Access</p>
                 <h3 id="lead-popup-title" className="text-2xl md:text-3xl font-serif text-[#111111]">
                   Get Complete Project Details
@@ -308,7 +308,7 @@ export function ScrollLeadPopup() {
                 ) : null}
               </div>
 
-              <form className="mt-8" noValidate onSubmit={handleSubmit}>
+              <form className="mt-5 sm:mt-8" noValidate onSubmit={handleSubmit}>
                 <AnimatePresence>
                   {submitError ? (
                     <motion.div
@@ -324,7 +324,7 @@ export function ScrollLeadPopup() {
                   ) : null}
                 </AnimatePresence>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-2 sm:gap-4">
                   {fields.map((field) => {
                     const fieldId = `lead-popup-${field.name}`;
                     const error = errors[field.name];
@@ -349,7 +349,7 @@ export function ScrollLeadPopup() {
                           aria-describedby={error ? `${fieldId}-error` : undefined}
                           disabled={isLocked}
                           className={cn(
-                            "peer w-full border border-[#E6E6E6] bg-white/70 px-4 pb-3 pt-5 text-sm text-[#111111]",
+                            "peer w-full border border-[#E6E6E6] bg-white/70 px-4 pb-2.5 pt-4.5 text-sm text-[#111111]",
                             "transition-all duration-300 focus:border-primary focus:outline-none",
                             "focus:shadow-[0_0_20px_rgba(200,169,106,0.25)]",
                             error ? "border-red-400/70" : "",
@@ -359,9 +359,9 @@ export function ScrollLeadPopup() {
                         <label
                           htmlFor={fieldId}
                           className={cn(
-                            "pointer-events-none absolute left-4 top-4 text-[0.65rem] uppercase tracking-[0.3em]",
+                            "pointer-events-none absolute left-4 top-3.5 text-[0.65rem] uppercase tracking-[0.3em]",
                             "text-[#777777] transition-all duration-300",
-                            "peer-placeholder-shown:top-4 peer-placeholder-shown:text-[0.7rem] peer-placeholder-shown:text-[#999999]",
+                            "peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[0.7rem] peer-placeholder-shown:text-[#999999]",
                             "peer-focus:-top-2 peer-focus:text-[0.55rem] peer-focus:text-primary",
                             "peer-focus:tracking-[0.35em]",
                             "bg-white px-1",
@@ -390,12 +390,12 @@ export function ScrollLeadPopup() {
 
                 <InquiryConsentBlock />
 
-                <div className="mt-6 flex flex-col items-center gap-3">
+                <div className="mt-5 sm:mt-6 flex flex-col items-center gap-3">
                   <button
                     type="submit"
                     disabled={isLocked}
                     className={cn(
-                      "w-full max-w-65 border border-primary/50 bg-white px-6 py-3 text-xs uppercase tracking-[0.35em] text-[#111111]",
+                      "w-full max-w-65 border border-primary/50 bg-white px-6 py-2.5 text-xs uppercase tracking-[0.35em] text-[#111111]",
                       "transition-all duration-500 hover:bg-primary/15 hover:shadow-[0_12px_30px_rgba(200,169,106,0.25)]",
                       isLocked ? "cursor-not-allowed opacity-70 hover:bg-white" : "",
                     )}
