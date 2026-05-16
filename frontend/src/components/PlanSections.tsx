@@ -188,17 +188,22 @@ function PlanGridSection({ eyebrow, title, description, items, onOpenPlan }: Pla
 export function UnitPlans() {
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<Array<HTMLElement | null>>([]);
+  const touchStartX = useRef<number | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [backgroundIndex, setBackgroundIndex] = useState(0);
 
-  const pricingHighlights = useMemo(
-    () => [
-      { label: 'Phase 1', type: '2 BHK', size: '1200–1279 sq ft', price: '₹1.47 Cr*' },
-      { label: 'Phase 2', type: '2 BHK', size: '1250 sq ft', price: '₹1.6 Cr*' },
-    ],
+  const sectionBackgrounds = useMemo(
+    () => ['#0a0f1a', '#0d1a0f', '#1a0d0a', '#0a0d1a', '#0f1a15'],
     [],
   );
 
+  const cycleBackground = React.useCallback(() => {
+    setBackgroundIndex((current) => (current + 1) % sectionBackgrounds.length);
+  }, [sectionBackgrounds.length]);
+
   const scrollCarousel = (direction: number) => {
+    cycleBackground();
+
     if (!carouselRef.current) {
       return;
     }
@@ -206,6 +211,25 @@ export function UnitPlans() {
     const nextIndex = Math.min(Math.max(activeIndex + direction, 0), unitPlans.length - 1);
     cardRefs.current[nextIndex]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     setActiveIndex(nextIndex);
+  };
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null) {
+      return;
+    }
+
+    const touchEndX = event.changedTouches[0]?.clientX ?? touchStartX.current;
+    const deltaX = touchEndX - touchStartX.current;
+
+    if (Math.abs(deltaX) > 44) {
+      cycleBackground();
+    }
+
+    touchStartX.current = null;
   };
 
   useEffect(() => {
@@ -245,7 +269,11 @@ export function UnitPlans() {
   }, []);
 
   return (
-    <section id="floorplans" className="relative overflow-hidden bg-linear-to-b from-[#111111] to-[#0a0a0a] py-20">
+    <section
+      id="floorplans"
+      className="relative overflow-hidden py-20 transition-colors duration-800 ease-in-out"
+      style={{ backgroundColor: sectionBackgrounds[backgroundIndex] }}
+    >
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#c6a66a] rounded-full blur-[180px]"></div>
       </div>
@@ -280,22 +308,12 @@ export function UnitPlans() {
           </div>
         </div>
 
-        <div className="mb-10 grid gap-4 sm:grid-cols-2">
-          {pricingHighlights.map((item) => (
-            <div key={item.label + item.price} className="rounded-[22px] border border-[#c6a66a]/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(10,10,10,0.16))] px-5 py-4 shadow-[0_14px_34px_rgba(0,0,0,0.22)] backdrop-blur-md">
-              <p className="text-[10px] uppercase tracking-[0.34em] text-[#9b7a45]">{item.label}</p>
-              <div className="mt-3 flex flex-wrap items-end justify-between gap-3">
-                <div>
-                  <p className="text-lg font-semibold text-[#f4efe7]">{item.type}</p>
-                  <p className="text-sm text-white/56">{item.size}</p>
-                </div>
-                <p className="text-lg font-semibold text-[#c6a66a]">{item.price}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div ref={carouselRef} className="luxury-plan-carousel scroll-smooth snap-x snap-mandatory overflow-x-auto pb-6">
+        <div
+          ref={carouselRef}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="luxury-plan-carousel scroll-smooth snap-x snap-mandatory overflow-x-auto pb-6"
+        >
           {unitPlans.map((plan, index) => (
             <motion.article
               key={`${plan.unitType}-${plan.tower}-${index}`}
@@ -330,7 +348,7 @@ export function UnitPlans() {
                 <div className="space-y-2">
                   <p className="text-[10px] uppercase tracking-[0.34em] text-[#9b7a45]">Unit Type</p>
                   <div className="flex items-start justify-between gap-4">
-                    <h3 className="text-[1.1rem] font-semibold tracking-tight text-[#f4efe7] leading-tight">{plan.unitType}</h3>
+                    <h3 className="text-[1.1rem] font-bold tracking-tight text-[#f4efe7] leading-tight">{plan.unitType}</h3>
                     <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.28em] text-white/62">
                       Tower {plan.tower}
                     </span>

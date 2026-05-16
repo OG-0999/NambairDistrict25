@@ -49,12 +49,12 @@ export function Location() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="overflow-hidden rounded-3xl border border-[rgba(198,166,106,0.14)] bg-[#f5efe6] shadow-[0_24px_70px_rgba(17,17,17,0.10)]"
+            className="h-80 overflow-hidden rounded-3xl border border-[rgba(198,166,106,0.14)] bg-[#f5efe6] shadow-[0_24px_70px_rgba(17,17,17,0.10)] md:h-125"
           >
             <iframe
               title="Nambiar District 25 Location"
               src={iframeSrc}
-              className="block h-80 w-full border-0 md:h-125"
+              className="block h-full w-full border-0"
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

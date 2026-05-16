@@ -343,34 +343,21 @@ export function ScrollLeadPopup() {
                           type={field.type}
                           value={values[field.name]}
                           onChange={handleChange(field.name)}
-                          placeholder=" "
+                          placeholder={field.label}
                           autoComplete={field.autoComplete}
                           inputMode={field.inputMode}
                           aria-invalid={Boolean(error)}
                           aria-describedby={error ? `${fieldId}-error` : undefined}
                           disabled={isLocked}
                           className={cn(
-                            "peer w-full border border-[#E6E6E6] bg-white/70 px-4 pb-2.5 pt-4.5 text-sm text-[#111111]",
+                            "w-full border border-[#E6E6E6] bg-white/70 px-4 pb-2.5 pt-4.5 text-sm text-[#111111]",
+                            "placeholder:text-[0.65rem] placeholder:text-[#9a948a]",
                             "transition-all duration-300 focus:border-primary focus:outline-none",
                             "focus:shadow-[0_0_20px_rgba(200,169,106,0.25)]",
                             error ? "border-red-400/70" : "",
                             isLocked ? "opacity-70" : "",
                           )}
                         />
-                        <label
-                          htmlFor={fieldId}
-                          className={cn(
-                            "pointer-events-none absolute left-4 top-3.5 text-[0.65rem] uppercase tracking-[0.3em]",
-                            "text-[#777777] transition-all duration-300",
-                            "peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[0.7rem] peer-placeholder-shown:text-[#999999]",
-                            "peer-focus:-top-2 peer-focus:text-[0.55rem] peer-focus:text-primary",
-                            "peer-focus:tracking-[0.35em]",
-                            "bg-white px-1",
-                            error ? "text-red-600" : "",
-                          )}
-                        >
-                          {field.label}
-                        </label>
                         <AnimatePresence>
                           {error ? (
                             <motion.p

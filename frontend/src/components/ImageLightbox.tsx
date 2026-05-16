@@ -127,7 +127,7 @@ export function ImageLightbox({
             exit={{ opacity: 0, y: 18, scale: 0.97 }}
             transition={{ duration: 0.45, ease: 'easeOut' }}
             className={cn(
-              'relative flex w-full max-w-6xl flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#12100d]/92 shadow-[0_35px_120px_rgba(0,0,0,0.55)]',
+              'relative flex w-full max-w-6xl max-h-[95vh] flex-col overflow-x-hidden overflow-y-auto rounded-3xl border border-white/10 bg-[#12100d]/92 shadow-[0_35px_120px_rgba(0,0,0,0.55)]',
               minimal && 'max-w-5xl bg-transparent border-transparent shadow-none'
             )}
             onClick={(event) => event.stopPropagation()}
@@ -193,7 +193,7 @@ export function ImageLightbox({
                   alt={activeImage.alt}
                   className={cn(
                     'w-auto max-w-full border border-white/10 bg-[#f5f2ec] object-contain shadow-[0_20px_60px_rgba(0,0,0,0.35)]',
-                    minimal ? 'max-h-[66vh] rounded-2xl md:max-h-[72vh]' : 'max-h-[72vh] rounded-3xl md:max-h-[76vh]'
+                    minimal ? 'max-h-[65vh] rounded-2xl md:max-h-[70vh]' : 'max-h-[65vh] rounded-3xl md:max-h-[70vh]'
                   )}
                   loading="eager"
                 />
