@@ -167,7 +167,10 @@ export function BookVisit() {
                   onChange={(event) => setPreferredUnit(event.target.value)}
                   className="w-full min-w-0 bg-transparent border-b border-[#e4dbca] pb-2 text-[#1f1b18] focus:outline-none focus:border-primary transition-colors text-base appearance-none"
                 >
+                  <option value="2bhk" className="bg-white text-[#111111]">2 BHK</option>
+                  <option value="2_5bhk" className="bg-white text-[#111111]">2.5 BHK</option>
                   <option value="3bhk" className="bg-white text-[#111111]">3 BHK Ultra Luxury</option>
+                  <option value="3_5bhk" className="bg-white text-[#111111]">3.5 BHK</option>
                   <option value="4bhk" className="bg-white text-[#111111]">4 BHK Sky Villa</option>
                 </select>
               </div>
