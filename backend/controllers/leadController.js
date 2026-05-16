@@ -26,7 +26,7 @@ const sendLeadEmail = async (lead) => {
 
   try {
     const result = await resend.emails.send({
-      from: 'onboarding@resend.dev',
+      from: 'leads@nambiardistrict25blr.in',
       to: receiverEmail,
       subject: 'New Lead Received',
       html,
