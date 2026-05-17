@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { LeadPayload, normalizePhone, submitLead, validateLead } from "@/lib/lead";
 
@@ -96,6 +96,7 @@ export function MobileStickyInquiryCTA() {
 }
 
 export function ScrollLeadPopup() {
+  const [, setLocation] = useLocation();
   const [hasSeen, setHasSeen] = useState<boolean | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [values, setValues] = useState<LeadPayload>(initialValues);
@@ -234,17 +235,11 @@ export function ScrollLeadPopup() {
     };
 
     try {
-      const result = await submitLead(payload);
+      await submitLead(payload);
       setErrors({});
       setValues(initialValues);
 
-      if (result.emailSent === false) {
-        setStatus("idle");
-        setSubmitError(result.message ?? "Lead saved but email notification failed.");
-        return;
-      }
-
-      setStatus("success");
+      setLocation("/thank-you");
     } catch (error) {
       setStatus("idle");
       setSubmitError(error instanceof Error ? error.message : "Something went wrong.");

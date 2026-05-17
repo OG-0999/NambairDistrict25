@@ -11,6 +11,7 @@ const fadeUp = {
 };
 
 export function BookVisit() {
+  const [, setLocation] = useLocation();
   const [fullName, setFullName] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [email, setEmail] = useState('');
@@ -19,7 +20,6 @@ export function BookVisit() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [errors, setErrors] = useState<{ fullName?: string; mobileNumber?: string; email?: string }>({});
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,12 +57,11 @@ export function BookVisit() {
 
     setStatus('submitting');
     setSubmitError(null);
-    setSubmitMessage(null);
 
     const { firstName, lastName } = splitFullName(fullName);
 
     try {
-      const response = await submitLead({
+      await submitLead({
         firstName,
         lastName,
         mobileNumber: normalizePhone(mobileNumber),
@@ -78,10 +77,7 @@ export function BookVisit() {
       setEmail('');
       setPreferredUnit('3bhk');
       setMessage('');
-      setSubmitMessage(response.message ?? 'Thank you. We will reach you shortly.');
-      if (response.emailSent === false) {
-        setSubmitError(response.message ?? 'Lead saved but email notification failed.');
-      }
+      setLocation('/thank-you');
     } catch (error) {
       setStatus('idle');
       setSubmitError(error instanceof Error ? error.message : 'Something went wrong.');
@@ -199,11 +195,6 @@ export function BookVisit() {
                 >
                   {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry'}
                 </button>
-                {submitMessage ? (
-                  <div role="status" aria-live="polite" className="mt-4 rounded-2xl border border-primary/30 bg-primary/10 px-4 py-3 text-center text-xs uppercase tracking-[0.35em] text-[#1f1b18]">
-                    {submitMessage}
-                  </div>
-                ) : null}
                 {submitError ? (
                   <div role="status" aria-live="polite" className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-center text-xs uppercase tracking-[0.35em] text-red-700">
                     {submitError}
