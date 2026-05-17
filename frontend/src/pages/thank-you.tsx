@@ -26,8 +26,10 @@ export default function ThankYouPage() {
   }, []);
 
   useEffect(() => {
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'conversion', {
+    const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', {
         'send_to': 'AW-18161919006/XpeACNif3a4cEJ7Io9RD'
       });
     }
