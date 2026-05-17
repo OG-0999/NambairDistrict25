@@ -25,6 +25,14 @@ export default function ThankYouPage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-18161919006/XpeACNif3a4cEJ7Io9RD'
+      });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#f6f0e7] text-[#1f1b18] selection:bg-primary selection:text-white">
       <main className="mx-auto flex min-h-screen w-full max-w-6xl items-center px-4 py-10 sm:px-6 md:px-8 lg:px-10">
