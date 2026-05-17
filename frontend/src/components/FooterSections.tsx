@@ -77,7 +77,7 @@ export function BookVisit() {
       setEmail('');
       setPreferredUnit('3bhk');
       setMessage('');
-      setLocation('/thank-you');
+      window.location.href = '/thank-you';
     } catch (error) {
       setStatus('idle');
       setSubmitError(error instanceof Error ? error.message : 'Something went wrong.');
