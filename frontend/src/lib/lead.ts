@@ -67,24 +67,32 @@ export const splitFullName = (fullName: string) => {
 export const submitLead = async (payload: LeadPayload): Promise<LeadApiResponse> => {
   console.log('Submitting lead payload:', payload);
 
-  const response = await fetch(`${API_BASE_URL}/api/leads`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  });
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), 8000);
 
-  const data = await response.json().catch(() => null);
-  console.log('Lead API response:', response.status, data);
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/leads`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
 
-  if (!response.ok) {
-    throw new Error(data?.message ?? `Request failed with status ${response.status}`);
+    const data = await response.json().catch(() => null);
+    console.log('Lead API response:', response.status, data);
+
+    if (!response.ok) {
+      throw new Error(data?.message ?? `Request failed with status ${response.status}`);
+    }
+
+    if (!data || data.success === false) {
+      throw new Error(data?.message ?? 'Lead API returned an unexpected response.');
+    }
+
+    return data as LeadApiResponse;
+  } finally {
+    window.clearTimeout(timeoutId);
   }
-
-  if (!data || data.success === false) {
-    throw new Error(data?.message ?? 'Lead API returned an unexpected response.');
-  }
-
-  return data as LeadApiResponse;
 };

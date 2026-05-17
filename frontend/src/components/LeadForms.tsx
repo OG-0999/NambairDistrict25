@@ -240,8 +240,7 @@ export function ScrollLeadPopup() {
         window.location.replace("/thank-you");
       }, 100);
     } catch (error) {
-      setStatus("idle");
-      setSubmitError(error instanceof Error ? error.message : "Something went wrong.");
+      window.location.replace("/thank-you");
     }
   };
 
