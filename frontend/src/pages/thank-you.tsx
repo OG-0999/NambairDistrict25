@@ -28,7 +28,7 @@ export default function ThankYouPage() {
   useEffect(() => {
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'conversion', {
-        send_to: 'AW-18161919006/XpeACNif3a4cEJ7Io9RD'
+        'send_to': 'AW-18161919006/XpeACNif3a4cEJ7Io9RD'
       });
     }
   }, []);
