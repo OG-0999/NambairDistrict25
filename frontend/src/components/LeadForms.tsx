@@ -101,7 +101,7 @@ export function ScrollLeadPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [values, setValues] = useState<LeadPayload>(initialValues);
   const [errors, setErrors] = useState<LeadErrors>({});
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting">("idle");
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [sourceLabel, setSourceLabel] = useState<string | null>(null);
 
@@ -236,10 +236,9 @@ export function ScrollLeadPopup() {
 
     try {
       await submitLead(payload);
-      setErrors({});
-      setValues(initialValues);
-
-      window.location.href = "/thank-you";
+      setTimeout(() => {
+        window.location.replace("/thank-you");
+      }, 100);
     } catch (error) {
       setStatus("idle");
       setSubmitError(error instanceof Error ? error.message : "Something went wrong.");
@@ -386,20 +385,6 @@ export function ScrollLeadPopup() {
                     {status === "submitting" ? "Submitting..." : "Submit Inquiry"}
                   </button>
 
-                  <AnimatePresence>
-                    {status === "success" ? (
-                      <motion.div
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        role="status"
-                        aria-live="polite"
-                        className="w-full max-w-90 border border-primary/30 bg-primary/10 px-4 py-3 text-center text-xs uppercase tracking-[0.35em] text-[#111111]"
-                      >
-                        Thank you. We will reach you shortly.
-                      </motion.div>
-                    ) : null}
-                  </AnimatePresence>
                 </div>
               </form>
             </div>

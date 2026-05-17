@@ -17,7 +17,7 @@ export function BookVisit() {
   const [email, setEmail] = useState('');
   const [preferredUnit, setPreferredUnit] = useState('3bhk');
   const [message, setMessage] = useState('');
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting'>('idle');
   const [errors, setErrors] = useState<{ fullName?: string; mobileNumber?: string; email?: string }>({});
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -70,14 +70,9 @@ export function BookVisit() {
         message,
       });
 
-      setStatus('success');
-      setErrors({});
-      setFullName('');
-      setMobileNumber('');
-      setEmail('');
-      setPreferredUnit('3bhk');
-      setMessage('');
-      window.location.href = '/thank-you';
+      setTimeout(() => {
+        window.location.replace("/thank-you");
+      }, 100);
     } catch (error) {
       setStatus('idle');
       setSubmitError(error instanceof Error ? error.message : 'Something went wrong.');
