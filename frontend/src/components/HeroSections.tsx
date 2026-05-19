@@ -194,7 +194,7 @@ export function Hero() {
             className="mb-7 inline-flex items-center rounded-full border border-[#e4dcc3] bg-[#f8f1dd]/90 px-5 py-3 text-sm text-[#2f261f] shadow-[0_18px_40px_rgba(255,255,255,0.45)] backdrop-blur-xl"
           >
             <span className="font-medium uppercase tracking-[0.3em]">Starting From</span>
-            <span className="ml-3 font-serif text-base md:text-lg font-semibold">₹1.47 Cr*</span>
+            <span className="ml-3 font-serif text-base md:text-lg font-bold">₹1.69 Cr*</span>
           </motion.div>
 
           <motion.h2
