@@ -31,75 +31,67 @@ type PlanCard = {
 
 const unitPlans: PlanCard[] = [
   {
-    unitType: '2 BHK',
+    unitType: '2B2T',
     image: unit3Bhk2T,
-    price: '₹1.47 Cr*',
+    price: '₹1.69 Cr*',
     tower: '8',
-    size: '1200–1279 sq ft',
+    size: '1266 sq ft',
     phase: 'Phase 1'
   },
   {
-    unitType: '2 BHK',
+    unitType: '3B2T',
     image: unit3BhkSmall,
-    price: '₹1.6 Cr*',
+    price: '₹2.00 Cr*',
     tower: '10',
-    size: '1250 sq ft',
+    size: '1498 sq ft',
     phase: 'Phase 3'
   },
   {
-    unitType: '2.5 BHK',
+    unitType: '3B3T R-01',
     image: unit3BhkMedium,
-    price: '₹2.05 Cr*',
+    price: '₹2.24 Cr*',
     tower: '11',
-    size: '1454 sq ft',
+    size: '1683 sq ft',
     phase: 'Starting From'
   },
   {
-    unitType: '3 BHK',
+    unitType: '3B3T R-02',
     image: unit3BhkLarge,
-    price: '₹1.47 Cr*',
+    price: '₹2.34 Cr*',
     tower: '09',
-    size: '1695 sq ft',
+    size: '1757 sq ft',
     phase: 'Starting From'
   },
   {
-    unitType: '3 BHK 2T',
+    unitType: '3B3T L-01',
     image: unit3Bhk2T,
-    price: '₹2.65 Cr*',
+    price: '₹2.73 Cr*',
     tower: '10',
-    size: '1896 sq ft',
+    size: '2051 sq ft',
     phase: 'Starting From'
   },
   {
-    unitType: '3 BHK Large',
+    unitType: '3B3T L-02',
     image: unit3BhkLarge,
-    price: '₹2.85 Cr*',
+    price: '₹2.71 Cr*',
     tower: '09',
-    size: '2046 sq ft',
+    size: '2034 sq ft',
     phase: 'Starting From'
   },
   {
-    unitType: '3.5 BHK',
-    image: unit3BhkMedium,
-    price: '₹3.1 Cr*',
-    tower: '08',
-    size: '2260 sq ft',
-    phase: 'Starting From'
-  },
-  {
-    unitType: '4 BHK',
+    unitType: '4B4T',
     image: unit4Bhk4T,
-    price: '₹3.8 Cr*',
+    price: '₹3.44 Cr*',
     tower: '12',
-    size: '2561 sq ft',
+    size: '2583 sq ft',
     phase: 'Starting From'
   },
   {
-    unitType: '4 BHK Large',
+    unitType: '4B5T',
     image: unit4Bhk5TLarge,
-    price: '₹4.45 Cr*',
+    price: '₹3.91 Cr*',
     tower: '07',
-    size: '2995 sq ft',
+    size: '2936 sq ft',
     phase: 'Starting From'
   }
 ];
