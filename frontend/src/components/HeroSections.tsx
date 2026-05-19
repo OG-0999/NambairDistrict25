@@ -201,7 +201,7 @@ export function Hero() {
             {...animationProps}
             className="mb-7 text-lg font-serif tracking-[0.13em] text-[#f1ece4] sm:text-2xl md:text-3xl drop-shadow-[0_1px_4px_rgba(31,27,24,0.10)]"
           >
-            PHASE 2 NOW LAUNCHING
+            PHASE 3 NOW LAUNCHING
           </motion.h2>
 
           <motion.div

@@ -178,7 +178,7 @@ export function KeyHighlights() {
         >
           <h2 className="text-3xl md:text-4xl font-serif text-[#1f1b18] mb-4">CURATED FOR THE FEW</h2>
           <div className="h-px w-24 bg-primary mx-auto mb-6"></div>
-          <p className="text-[#7d7267] max-w-2xl mx-auto uppercase tracking-widest text-sm">Key Highlights of Phase 2</p>
+          <p className="text-[#7d7267] max-w-2xl mx-auto uppercase tracking-widest text-sm">Key Highlights of Phase 3</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

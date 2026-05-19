@@ -60,7 +60,7 @@ export default function ThankYouPage() {
                 '100 Acre Township',
                 '2.5 Lakh Sq Ft Clubhouse',
                 'Sarjapur Road Location',
-                'Early Phase 2 Pricing',
+                'Early Phase 3 Pricing',
               ].map((highlight) => (
                 <div
                   key={highlight}

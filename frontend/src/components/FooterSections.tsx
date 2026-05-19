@@ -92,7 +92,7 @@ export function BookVisit() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-5xl font-serif text-[#1f1b18] mb-6">BEGIN YOUR SOHO LIFE</h2>
-            <p className="text-[#4c4339] text-base max-w-2xl mx-auto">Phase 2 is now launching. Register your interest for priority access and exclusive preview pricing.</p>
+            <p className="text-[#4c4339] text-base max-w-2xl mx-auto">Phase 3 is now launching. Register your interest for priority access and exclusive preview pricing.</p>
           </motion.div>
 
           <motion.div 
@@ -249,7 +249,7 @@ export function Footer() {
               NAMBIAR <span className="text-primary opacity-70 px-1">|</span> DISTRICT 25
             </h2>
             <p className="text-[#4c4339] text-sm leading-relaxed max-w-md mb-8">
-              Bengaluru's finest integrated township bringing the SOHO life to the Garden City. Phase 2 now launching with ultra-luxury skyrise apartments and a 7-acre clubhouse.
+              Bengaluru's finest integrated township bringing the SOHO life to the Garden City. Phase 3 now launching with ultra-luxury skyrise apartments and a 7-acre clubhouse.
             </p>
             <div className="text-[#7d7267] text-xs space-y-2 border-l border-primary/30 pl-4">
               <p><strong className="text-[#1f1b18]">Site:</strong> Chandapura Dommasandra Road, Dommasandra, Bengaluru - 562 125</p>
