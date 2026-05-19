@@ -71,10 +71,10 @@ export function BookVisit() {
       });
 
       setTimeout(() => {
-        window.location.replace("/thank-you");
+        window.location.href = '/thank-you.html';
       }, 100);
     } catch (error) {
-      window.location.replace('/thank-you');
+      window.location.href = '/thank-you.html';
     }
   };
 

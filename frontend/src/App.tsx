@@ -6,7 +6,6 @@ import Home from "@/pages/home";
 import PrivacyPolicy from '@/pages/privacy-policy';
 import TermsAndConditions from '@/pages/terms-and-conditions';
 import DisclaimerPage from '@/pages/disclaimer';
-import ThankYouPage from '@/pages/thank-you';
 import RouteScrollTop from '@/components/RouteScrollTop';
 import NotFound from '@/pages/not-found';
 
@@ -17,7 +16,6 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/disclaimer" component={DisclaimerPage} />
-      <Route path="/thank-you" component={ThankYouPage} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/terms-and-conditions" component={TermsAndConditions} />
       <Route component={NotFound} />
