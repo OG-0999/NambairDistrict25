@@ -25,18 +25,23 @@ export default function ThankYouPage() {
     };
   }, []);
 
-  useEffect(() => {
-    const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
-
-    if (typeof gtag === 'function') {
-      gtag('event', 'conversion', {
-        'send_to': 'AW-18161919006/XpeACNif3a4cEJ7Io9RD'
-      });
-    }
-  }, []);
-
   return (
-    <div className="min-h-screen bg-[#f6f0e7] text-[#1f1b18] selection:bg-primary selection:text-white">
+    <>
+      <iframe
+        src="/thank-you.html"
+        title="conversion-verification"
+        aria-hidden="true"
+        tabIndex={-1}
+        style={{
+          position: 'absolute',
+          width: 0,
+          height: 0,
+          border: 0,
+          opacity: 0,
+          pointerEvents: 'none'
+        }}
+      />
+      <div className="min-h-screen bg-[#f6f0e7] text-[#1f1b18] selection:bg-primary selection:text-white">
       <main className="mx-auto flex min-h-screen w-full max-w-6xl items-center px-4 py-10 sm:px-6 md:px-8 lg:px-10">
         <section className="relative w-full overflow-hidden rounded-4xl border border-[#e2d4bc] bg-[linear-gradient(180deg,rgba(255,252,247,0.98),rgba(246,240,231,0.98))] px-5 py-10 shadow-[0_24px_90px_rgba(62,44,18,0.08)] sm:px-8 sm:py-12 md:px-12 md:py-16">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(198,166,106,0.14),transparent_45%),radial-gradient(circle_at_bottom_right,rgba(198,166,106,0.08),transparent_32%)]" />
@@ -99,5 +104,6 @@ export default function ThankYouPage() {
         </section>
       </main>
     </div>
+    </>
   );
 }
