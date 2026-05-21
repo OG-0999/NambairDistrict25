@@ -135,6 +135,12 @@ export function Navigation() {
 
 export function Hero() {
   const [isMobile, setIsMobile] = useState(false);
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     const query = window.matchMedia('(max-width: 768px)');
@@ -148,6 +154,44 @@ export function Hero() {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleLeadSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (isSubmitting) {
+      return;
+    }
+
+    const apiBaseUrl = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch(`${apiBaseUrl}/api/leads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: fullName.trim(),
+          mobileNumber: mobileNumber.trim(),
+          email: email.trim(),
+          message: message.trim(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Lead submission failed');
+      }
+
+      window.location.replace('/thank-you');
+    } catch (error) {
+      setSubmitError('Unable to submit the form right now. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -167,8 +211,8 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(13,27,22,0.18),rgba(13,27,22,0.3))]"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto grid grid-cols-1 items-center gap-6 px-4 pt-14 sm:px-6 sm:pt-16 lg:grid-cols-12">
-        <div className="lg:col-span-8 flex flex-col items-start text-left w-full max-w-2xl sm:max-w-3xl">
+      <div className="relative z-10 container mx-auto grid grid-cols-1 items-center gap-6 px-4 pt-14 sm:px-6 sm:pt-16 lg:grid-cols-12 lg:items-start">
+        <div className="lg:col-span-7 flex flex-col items-start text-left w-full max-w-2xl sm:max-w-3xl">
           <motion.div
             {...animationProps}
             className="mb-6 flex min-w-0 flex-wrap items-center gap-4"
@@ -222,7 +266,88 @@ export function Hero() {
               Download Brochure
             </button>
           </motion.div>
-        </div> {/* Close .lg:col-span-8 */}
+        </div> {/* Close .lg:col-span-7 */}
+
+        <div className="hidden md:block lg:col-span-5 lg:justify-self-end lg:w-full lg:max-w-md lg:sticky lg:top-24">
+          <div className="rounded-[28px] border border-[#e6d7bc] bg-[linear-gradient(180deg,rgba(255,252,247,0.98),rgba(247,240,229,0.98))] p-6 shadow-[0_24px_80px_rgba(31,27,24,0.18)] backdrop-blur-md">
+            <div className="mb-5 text-center">
+              <p className="text-[0.62rem] uppercase tracking-[0.55em] text-[#8a6f3f]">Register Interest</p>
+              <h3 className="mt-3 font-serif text-2xl leading-tight text-[#161311]">Speak to Our Team</h3>
+              <p className="mt-3 text-sm leading-6 text-[#5b5145]">Share your details and we will get back with pricing, floor plans, and availability.</p>
+            </div>
+
+            <form onSubmit={handleLeadSubmit} className="space-y-4" noValidate>
+              <div>
+                <label className="mb-2 block text-xs font-medium uppercase tracking-[0.24em] text-[#7b6650]" htmlFor="hero-full-name">
+                  Name
+                </label>
+                <input
+                  id="hero-full-name"
+                  type="text"
+                  value={fullName}
+                  onChange={(event) => setFullName(event.target.value)}
+                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-4 py-3 text-sm text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[#9d8f7b] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
+                  placeholder="Your full name"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs font-medium uppercase tracking-[0.24em] text-[#7b6650]" htmlFor="hero-email">
+                  Email Address
+                </label>
+                <input
+                  id="hero-email"
+                  type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-4 py-3 text-sm text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[#9d8f7b] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs font-medium uppercase tracking-[0.24em] text-[#7b6650]" htmlFor="hero-mobile">
+                  Phone Number
+                </label>
+                <input
+                  id="hero-mobile"
+                  type="tel"
+                  value={mobileNumber}
+                  onChange={(event) => setMobileNumber(event.target.value)}
+                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-4 py-3 text-sm text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[#9d8f7b] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
+                  placeholder="Phone number"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs font-medium uppercase tracking-[0.24em] text-[#7b6650]" htmlFor="hero-message">
+                  Message <span className="normal-case tracking-normal text-[#9d8f7b]">(optional)</span>
+                </label>
+                <textarea
+                  id="hero-message"
+                  value={message}
+                  onChange={(event) => setMessage(event.target.value)}
+                  rows={4}
+                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-4 py-3 text-sm text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[#9d8f7b] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
+                  placeholder="Tell us what you're looking for"
+                />
+              </div>
+
+              {submitError ? <p className="text-sm text-red-600">{submitError}</p> : null}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(198,166,106,0.4)] bg-[#111111] px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.24em] text-[#f5f1e8] shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(198,166,106,0.62)] hover:shadow-[0_14px_30px_rgba(0,0,0,0.24),0_0_24px_rgba(198,166,106,0.22)] disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </button>
+            </form>
+          </div>
+        </div>
       </div> {/* Close grid container */}
     </section>
   );
