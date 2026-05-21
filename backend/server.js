@@ -11,7 +11,11 @@ const errorHandler = require('./middleware/errorMiddleware');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: ['https://nambiardistrict25blr.in', 'http://localhost:5173'],
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 app.use(express.json());
 
 app.use((req, res, next) => {

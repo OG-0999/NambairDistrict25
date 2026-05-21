@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -134,21 +134,12 @@ export function Navigation() {
 }
 
 export function Hero() {
-  const [isMobile, setIsMobile] = useState(false);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const query = window.matchMedia('(max-width: 768px)');
-    const setState = () => setIsMobile(query.matches);
-    setState();
-    query.addEventListener('change', setState);
-    return () => query.removeEventListener('change', setState);
-  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
