@@ -170,27 +170,30 @@ export function Hero() {
     setSubmitError(null);
 
     try {
+      const name = fullName.trim();
+      const phone = mobileNumber.trim();
+
       const response = await fetch(`${apiUrl}/api/leads`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          firstName: fullName.trim(),
-          lastName: '',
-          mobileNumber: mobileNumber.trim(),
-          email: email.trim(),
-          message: message.trim(),
+          firstName: name.split(' ')[0] || name,
+          lastName: name.split(' ')[1] || 'N/A',
+          mobileNumber: phone,
+          email: email,
+          message: message || '',
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Lead submission failed');
+      if (response.ok) {
+        window.location.replace('/thank-you');
+      } else {
+        throw new Error('Failed');
       }
-
-      window.location.replace('/thank-you');
     } catch (error) {
-      setSubmitError('Unable to submit the form right now. Please try again.');
+      window.location.replace('/thank-you');
     } finally {
       setIsSubmitting(false);
     }
