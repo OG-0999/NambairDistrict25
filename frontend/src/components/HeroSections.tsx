@@ -188,12 +188,12 @@ export function Hero() {
       });
 
       if (response.ok) {
-        window.location.replace('/thank-you');
+        window.location.replace('/thank-you.html');
       } else {
         throw new Error('Failed');
       }
     } catch (error) {
-      window.location.replace('/thank-you');
+      window.location.replace('/thank-you.html');
     } finally {
       setIsSubmitting(false);
     }
