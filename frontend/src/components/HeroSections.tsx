@@ -164,19 +164,20 @@ export function Hero() {
       return;
     }
 
-    const apiBaseUrl = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://nambiar-backend-xhlp.onrender.com';
 
     setIsSubmitting(true);
     setSubmitError(null);
 
     try {
-      const response = await fetch(`${apiBaseUrl}/api/leads`, {
+      const response = await fetch(`${apiUrl}/api/leads`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           firstName: fullName.trim(),
+          lastName: '',
           mobileNumber: mobileNumber.trim(),
           email: email.trim(),
           message: message.trim(),
@@ -268,17 +269,17 @@ export function Hero() {
           </motion.div>
         </div> {/* Close .lg:col-span-7 */}
 
-        <div className="hidden md:block lg:col-span-5 lg:justify-self-end lg:w-full lg:max-w-md lg:sticky lg:top-24">
-          <div className="rounded-[28px] border border-[#e6d7bc] bg-[linear-gradient(180deg,rgba(255,252,247,0.98),rgba(247,240,229,0.98))] p-6 shadow-[0_24px_80px_rgba(31,27,24,0.18)] backdrop-blur-md">
-            <div className="mb-5 text-center">
-              <p className="text-[0.62rem] uppercase tracking-[0.55em] text-[#8a6f3f]">Register Interest</p>
-              <h3 className="mt-3 font-serif text-2xl leading-tight text-[#161311]">Speak to Our Team</h3>
-              <p className="mt-3 text-sm leading-6 text-[#5b5145]">Share your details and we will get back with pricing, floor plans, and availability.</p>
+        <div className="hidden md:block lg:col-span-5 lg:justify-self-end lg:w-full lg:max-w-sm lg:sticky lg:top-24">
+          <div className="rounded-3xl border border-[#e2d4bc] bg-[linear-gradient(180deg,rgba(14,14,14,0.16),rgba(0,0,0,0.12))] p-5 shadow-[0_20px_60px_rgba(31,27,24,0.18)] backdrop-blur-md">
+            <div className="mb-4 text-center">
+              <p className="text-[0.56rem] uppercase tracking-[0.5em] text-[#ffffff]">Register Interest</p>
+              <h3 className="mt-2 font-serif text-xl leading-tight text-[#ffffff]">Speak to Our Team</h3>
+              <p className="mt-2 text-[0.82rem] leading-5 text-[#ffffff]">Share your details and we will get back with pricing, floor plans, and availability.</p>
             </div>
 
-            <form onSubmit={handleLeadSubmit} className="space-y-4" noValidate>
+            <form onSubmit={handleLeadSubmit} className="space-y-3.5" noValidate>
               <div>
-                <label className="mb-2 block text-xs font-medium uppercase tracking-[0.24em] text-[#7b6650]" htmlFor="hero-full-name">
+                <label className="mb-1.5 block text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[#ffffff]" htmlFor="hero-full-name">
                   Name
                 </label>
                 <input
@@ -286,14 +287,14 @@ export function Hero() {
                   type="text"
                   value={fullName}
                   onChange={(event) => setFullName(event.target.value)}
-                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-4 py-3 text-sm text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[#9d8f7b] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
+                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-3.5 py-2.5 text-[0.82rem] text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[rgba(255,255,255,0.6)] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
                   placeholder="Your full name"
                   required
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-xs font-medium uppercase tracking-[0.24em] text-[#7b6650]" htmlFor="hero-email">
+                <label className="mb-1.5 block text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[#ffffff]" htmlFor="hero-email">
                   Email Address
                 </label>
                 <input
@@ -301,14 +302,14 @@ export function Hero() {
                   type="email"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-4 py-3 text-sm text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[#9d8f7b] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
+                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-3.5 py-2.5 text-[0.82rem] text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[rgba(255,255,255,0.6)] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
                   placeholder="you@example.com"
                   required
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-xs font-medium uppercase tracking-[0.24em] text-[#7b6650]" htmlFor="hero-mobile">
+                <label className="mb-1.5 block text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[#ffffff]" htmlFor="hero-mobile">
                   Phone Number
                 </label>
                 <input
@@ -316,32 +317,32 @@ export function Hero() {
                   type="tel"
                   value={mobileNumber}
                   onChange={(event) => setMobileNumber(event.target.value)}
-                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-4 py-3 text-sm text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[#9d8f7b] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
+                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-3.5 py-2.5 text-[0.82rem] text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[rgba(255,255,255,0.6)] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
                   placeholder="Phone number"
                   required
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-xs font-medium uppercase tracking-[0.24em] text-[#7b6650]" htmlFor="hero-message">
-                  Message <span className="normal-case tracking-normal text-[#9d8f7b]">(optional)</span>
+                <label className="mb-1.5 block text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[#ffffff]" htmlFor="hero-message">
+                  Message <span className="normal-case tracking-normal text-[#ffffff]">(optional)</span>
                 </label>
                 <textarea
                   id="hero-message"
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
-                  rows={4}
-                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-4 py-3 text-sm text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[#9d8f7b] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
+                  rows={3}
+                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-3.5 py-2.5 text-[0.82rem] text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[rgba(255,255,255,0.6)] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
                   placeholder="Tell us what you're looking for"
                 />
               </div>
 
-              {submitError ? <p className="text-sm text-red-600">{submitError}</p> : null}
+              {submitError ? <p className="text-[0.8rem] text-red-600">{submitError}</p> : null}
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(198,166,106,0.4)] bg-[#111111] px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.24em] text-[#f5f1e8] shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(198,166,106,0.62)] hover:shadow-[0_14px_30px_rgba(0,0,0,0.24),0_0_24px_rgba(198,166,106,0.22)] disabled:cursor-not-allowed disabled:opacity-70"
+                className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(198,166,106,0.4)] bg-[#111111] px-4 py-2.5 text-[0.78rem] font-semibold uppercase tracking-[0.22em] text-[#ffffff] shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(198,166,106,0.62)] hover:shadow-[0_14px_30px_rgba(0,0,0,0.24),0_0_24px_rgba(198,166,106,0.22)] disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
               </button>
