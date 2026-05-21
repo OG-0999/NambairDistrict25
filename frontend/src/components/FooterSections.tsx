@@ -263,8 +263,8 @@ export function Footer() {
                 <li><button type="button" onClick={() => scrollToSection('overview')} className="hover:text-primary transition-colors">Overview</button></li>
                 <li><button type="button" onClick={() => scrollToSection('amenities')} className="hover:text-primary transition-colors">Amenities</button></li>
                 <li><button type="button" onClick={() => scrollToSection('location')} className="hover:text-primary transition-colors">Location</button></li>
-                <li><Link href="/disclaimer#privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
-                <li><Link href="/disclaimer#terms-and-conditions" className="hover:text-primary transition-colors">Terms &amp; Conditions</Link></li>
+                <li><Link href="/disclaimer" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/disclaimer" className="hover:text-primary transition-colors">Terms &amp; Conditions</Link></li>
               </ul>
           </div>
 
@@ -285,9 +285,9 @@ export function Footer() {
 
         <div className="mt-6 flex items-center justify-center">
             <div className="flex flex-wrap gap-4 text-xs text-[#6b6259]">
-            <Link href="/disclaimer#privacy-policy" className="text-[#0066cc] hover:underline">Privacy Policy</Link>
+            <Link href="/disclaimer" className="text-[#0066cc] hover:underline">Privacy Policy</Link>
             <span className="text-[#d7c79a]/40">•</span>
-            <Link href="/disclaimer#terms-and-conditions" className="text-[#0066cc] hover:underline">Terms &amp; Conditions</Link>
+            <Link href="/disclaimer" className="text-[#0066cc] hover:underline">Terms &amp; Conditions</Link>
             <span className="text-[#d7c79a]/40">•</span>
             <button onClick={() => setLocation('/disclaimer')} className="text-[#0066cc] hover:underline">Disclaimer</button>
           </div>
