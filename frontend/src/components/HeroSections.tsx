@@ -272,17 +272,17 @@ export function Hero() {
           </motion.div>
         </div> {/* Close .lg:col-span-7 */}
 
-        <div className="hidden md:block lg:col-span-5 lg:justify-self-end lg:w-full lg:max-w-sm lg:sticky lg:top-24">
-          <div className="rounded-3xl border border-[#e2d4bc] bg-[linear-gradient(180deg,rgba(14,14,14,0.16),rgba(0,0,0,0.12))] p-5 shadow-[0_20px_60px_rgba(31,27,24,0.18)] backdrop-blur-md">
-            <div className="mb-4 text-center">
-              <p className="text-[0.56rem] uppercase tracking-[0.5em] text-[#ffffff]">Register Interest</p>
-              <h3 className="mt-2 font-serif text-xl leading-tight text-[#ffffff]">Speak to Our Team</h3>
-              <p className="mt-2 text-[0.82rem] leading-5 text-[#ffffff]">Share your details and we will get back with pricing, floor plans, and availability.</p>
+        <div className="hidden md:block lg:col-span-5 lg:justify-self-end lg:w-full lg:max-w-76 lg:sticky lg:top-24">
+          <div className="rounded-3xl border border-[#e2d4bc] bg-[linear-gradient(180deg,rgba(14,14,14,0.16),rgba(0,0,0,0.12))] p-4 shadow-[0_20px_60px_rgba(31,27,24,0.18)] backdrop-blur-md">
+            <div className="mb-3 text-center">
+              <p className="text-[0.52rem] uppercase tracking-[0.48em] text-[#ffffff]">Register Interest</p>
+              <h3 className="mt-1.5 font-serif text-[1.1rem] leading-tight text-[#ffffff]">Speak to Our Team</h3>
+              <p className="mt-1.5 text-[0.75rem] leading-[1.35rem] text-[#ffffff]">Share your details and we will get back with pricing, floor plans, and availability.</p>
             </div>
 
-            <form onSubmit={handleLeadSubmit} className="space-y-3.5" noValidate>
+            <form onSubmit={handleLeadSubmit} className="space-y-3" noValidate>
               <div>
-                <label className="mb-1.5 block text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[#ffffff]" htmlFor="hero-full-name">
+                <label className="mb-1 block text-[0.62rem] font-medium uppercase tracking-[0.22em] text-[#ffffff]" htmlFor="hero-full-name">
                   Name
                 </label>
                 <input
@@ -290,14 +290,14 @@ export function Hero() {
                   type="text"
                   value={fullName}
                   onChange={(event) => setFullName(event.target.value)}
-                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-3.5 py-2.5 text-[0.82rem] text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[rgba(255,255,255,0.6)] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
+                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-3 py-2 text-[0.78rem] text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[rgba(255,255,255,0.6)] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
                   placeholder="Your full name"
                   required
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[#ffffff]" htmlFor="hero-email">
+                <label className="mb-1 block text-[0.62rem] font-medium uppercase tracking-[0.22em] text-[#ffffff]" htmlFor="hero-email">
                   Email Address
                 </label>
                 <input
@@ -305,14 +305,14 @@ export function Hero() {
                   type="email"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-3.5 py-2.5 text-[0.82rem] text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[rgba(255,255,255,0.6)] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
+                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-3 py-2 text-[0.78rem] text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[rgba(255,255,255,0.6)] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
                   placeholder="you@example.com"
                   required
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[#ffffff]" htmlFor="hero-mobile">
+                <label className="mb-1 block text-[0.62rem] font-medium uppercase tracking-[0.22em] text-[#ffffff]" htmlFor="hero-mobile">
                   Phone Number
                 </label>
                 <input
@@ -320,14 +320,14 @@ export function Hero() {
                   type="tel"
                   value={mobileNumber}
                   onChange={(event) => setMobileNumber(event.target.value)}
-                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-3.5 py-2.5 text-[0.82rem] text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[rgba(255,255,255,0.6)] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
+                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-3 py-2 text-[0.78rem] text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[rgba(255,255,255,0.6)] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
                   placeholder="Phone number"
                   required
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[#ffffff]" htmlFor="hero-message">
+                <label className="mb-1 block text-[0.62rem] font-medium uppercase tracking-[0.22em] text-[#ffffff]" htmlFor="hero-message">
                   Message <span className="normal-case tracking-normal text-[#ffffff]">(optional)</span>
                 </label>
                 <textarea
@@ -335,17 +335,17 @@ export function Hero() {
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
                   rows={3}
-                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-3.5 py-2.5 text-[0.82rem] text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[rgba(255,255,255,0.6)] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
+                  className="w-full rounded-2xl border border-[#e2d4bc] bg-white px-3 py-2 text-[0.78rem] text-[#1f1b18] outline-none transition-all duration-300 placeholder:text-[rgba(255,255,255,0.6)] focus:border-[#c6a66a] focus:shadow-[0_0_0_4px_rgba(198,166,106,0.12)]"
                   placeholder="Tell us what you're looking for"
                 />
               </div>
 
-              {submitError ? <p className="text-[0.8rem] text-red-600">{submitError}</p> : null}
+              {submitError ? <p className="text-[0.74rem] text-red-600">{submitError}</p> : null}
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(198,166,106,0.4)] bg-[#111111] px-4 py-2.5 text-[0.78rem] font-semibold uppercase tracking-[0.22em] text-[#ffffff] shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(198,166,106,0.62)] hover:shadow-[0_14px_30px_rgba(0,0,0,0.24),0_0_24px_rgba(198,166,106,0.22)] disabled:cursor-not-allowed disabled:opacity-70"
+                className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(198,166,106,0.4)] bg-[#111111] px-3.5 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[#ffffff] shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(198,166,106,0.62)] hover:shadow-[0_14px_30px_rgba(0,0,0,0.24),0_0_24px_rgba(198,166,106,0.22)] disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
               </button>
