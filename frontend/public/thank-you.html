@@ -89,26 +89,8 @@
 
         <div class="actions">
           <a class="btn dark" href="/">Back to Homepage</a>
-          <a class="btn gold" href="https://wa.me/919164875465">WhatsApp Sales Team</a>
         </div>
-
-        <div class="count">Connecting you to our sales team in <span id="seconds">2</span> seconds...</div>
       </main>
     </div>
-
-    <script>
-      (function(){
-        var target = 'https://wa.me/919164875465';
-        var secondsEl = document.getElementById('seconds');
-        var seconds = 2;
-        secondsEl.textContent = seconds;
-        var iv = setInterval(function(){
-          seconds = Math.max(seconds - 1, 0);
-          secondsEl.textContent = seconds;
-          if(seconds === 0){ clearInterval(iv); }
-        }, 1000);
-        setTimeout(function(){ window.location.href = target; }, 2000);
-      })();
-    </script>
   </body>
 </html>
