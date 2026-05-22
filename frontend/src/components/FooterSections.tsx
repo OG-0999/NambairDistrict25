@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, ArrowUp } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
 import { submitLead, normalizePhone, splitFullName, isValidIndianPhone, EMAIL_REGEX } from '@/lib/lead';
 import { InquiryConsentBlock } from '@/components/LeadForms';
@@ -332,20 +332,6 @@ export function FloatingElements() {
           className="h-full bg-primary"
           style={{ width: `${scrollProgress * 100}%` }}
         />
-      </div>
-
-      {/* Floating Call Button Left */}
-      <div className="fixed bottom-6 left-5 z-50 flex flex-col items-start gap-3">
-        <a
-          href="tel:+919164875465"
-          className="group relative flex items-center justify-center"
-          aria-label="Call Now"
-        >
-          <span className="absolute inset-0 rounded-full bg-primary/20 animate-pulse-slow blur-xl" />
-          <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-primary/60 bg-[#fcfaf7] shadow-[0_8px_32px_rgba(200,169,106,0.18)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_36px_rgba(200,169,106,0.28)]">
-            <Phone className="w-7 h-7 text-primary group-hover:scale-110 transition-transform duration-300" />
-          </span>
-        </a>
       </div>
 
       {/* Floating CTA Right */}
