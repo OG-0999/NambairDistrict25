@@ -17,15 +17,10 @@ export function BookVisit() {
   const [email, setEmail] = useState('');
   const [preferredUnit, setPreferredUnit] = useState('3bhk');
   const [message, setMessage] = useState('');
-  const [status, setStatus] = useState<'idle' | 'submitting'>('idle');
   const [errors, setErrors] = useState<{ fullName?: string; mobileNumber?: string; email?: string }>({});
-  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (status === 'submitting') {
-      return;
-    }
 
     const nextErrors: typeof errors = {};
     const trimmedName = fullName.trim();
@@ -51,31 +46,21 @@ export function BookVisit() {
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
-      setSubmitError(null);
       return;
     }
 
-    setStatus('submitting');
-    setSubmitError(null);
-
     const { firstName, lastName } = splitFullName(fullName);
 
-    try {
-      await submitLead({
-        firstName,
-        lastName,
-        mobileNumber: normalizePhone(mobileNumber),
-        email: email.trim().toLowerCase(),
-        preferredUnit,
-        message,
-      });
+    submitLead({
+      firstName,
+      lastName,
+      mobileNumber: normalizePhone(mobileNumber),
+      email: email.trim().toLowerCase(),
+      preferredUnit,
+      message,
+    });
 
-      setTimeout(() => {
-        window.location.href = '/thank-you.html';
-      }, 100);
-    } catch (error) {
-      window.location.href = '/thank-you.html';
-    }
+    window.location.replace('/thank-you');
   };
 
   return (
@@ -184,16 +169,10 @@ export function BookVisit() {
               <div className="md:col-span-2 mt-4">
                 <button
                   type="submit"
-                  disabled={status === 'submitting'}
-                  className={`w-full bg-[#fcfaf7] border border-primary/50 text-[#1f1b18] py-3 uppercase tracking-[0.2em] font-medium transition-all duration-500 hover:bg-primary/15 hover:shadow-[0_12px_30px_rgba(200,169,106,0.25)] ${status === 'submitting' ? 'cursor-not-allowed opacity-70' : ''}`}
+                  className="w-full bg-[#fcfaf7] border border-primary/50 text-[#1f1b18] py-3 uppercase tracking-[0.2em] font-medium transition-all duration-500 hover:bg-primary/15 hover:shadow-[0_12px_30px_rgba(200,169,106,0.25)]"
                 >
-                  {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry'}
+                  Submit Inquiry
                 </button>
-                {submitError ? (
-                  <div role="status" aria-live="polite" className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-center text-xs uppercase tracking-[0.35em] text-red-700">
-                    {submitError}
-                  </div>
-                ) : null}
               </div>
             </form>
           </motion.div>

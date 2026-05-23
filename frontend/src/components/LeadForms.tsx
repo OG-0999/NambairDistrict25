@@ -101,8 +101,6 @@ export function ScrollLeadPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [values, setValues] = useState<LeadPayload>(initialValues);
   const [errors, setErrors] = useState<LeadErrors>({});
-  const [status, setStatus] = useState<"idle" | "submitting">("idle");
-  const [submitError, setSubmitError] = useState<string | null>(null);
   const [sourceLabel, setSourceLabel] = useState<string | null>(null);
 
   const fields = useMemo<FieldConfig[]>(
@@ -123,9 +121,7 @@ export function ScrollLeadPopup() {
 
   const closePopup = useCallback(() => {
     setIsOpen(false);
-    setStatus("idle");
     setErrors({});
-    setSubmitError(null);
     setSourceLabel(null);
     setValues(initialValues);
   }, []);
@@ -213,19 +209,11 @@ export function ScrollLeadPopup() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (status === "submitting") {
-      return;
-    }
-
     const nextErrors = validateLead(values);
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
-      setStatus("idle");
       return;
     }
-
-    setStatus("submitting");
-    setSubmitError(null);
 
     const payload: LeadPayload = {
       firstName: values.firstName.trim(),
@@ -234,14 +222,8 @@ export function ScrollLeadPopup() {
       email: values.email.trim().toLowerCase(),
     };
 
-    try {
-      await submitLead(payload);
-      setTimeout(() => {
-        window.location.href = '/thank-you.html';
-      }, 100);
-    } catch (error) {
-      window.location.href = '/thank-you.html';
-    }
+    submitLead(payload);
+    window.location.replace('/thank-you');
   };
 
   const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -249,8 +231,6 @@ export function ScrollLeadPopup() {
       closePopup();
     }
   };
-
-  const isLocked = status !== "idle";
 
   return (
     <AnimatePresence>
@@ -303,20 +283,6 @@ export function ScrollLeadPopup() {
               </div>
 
               <form className="mt-5 sm:mt-8" noValidate onSubmit={handleSubmit}>
-                <AnimatePresence>
-                  {submitError ? (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      role="status"
-                      aria-live="polite"
-                      className="mb-4 border border-red-200 bg-red-50 px-4 py-3 text-center text-xs uppercase tracking-[0.28em] text-red-700"
-                    >
-                      {submitError}
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
 
                 <div className="grid grid-cols-1 gap-3 md:grid-cols-2 sm:gap-4">
                   {fields.map((field) => {
@@ -341,14 +307,12 @@ export function ScrollLeadPopup() {
                           inputMode={field.inputMode}
                           aria-invalid={Boolean(error)}
                           aria-describedby={error ? `${fieldId}-error` : undefined}
-                          disabled={isLocked}
                           className={cn(
                             "w-full border border-[#E6E6E6] bg-white/70 px-4 pb-2.5 pt-4.5 text-sm text-[#111111]",
                             "placeholder:text-[0.65rem] placeholder:text-[#9a948a]",
                             "transition-all duration-300 focus:border-primary focus:outline-none",
                             "focus:shadow-[0_0_20px_rgba(200,169,106,0.25)]",
                             error ? "border-red-400/70" : "",
-                            isLocked ? "opacity-70" : "",
                           )}
                         />
                         <AnimatePresence>
@@ -374,14 +338,12 @@ export function ScrollLeadPopup() {
                 <div className="mt-5 sm:mt-6 flex flex-col items-center gap-3">
                   <button
                     type="submit"
-                    disabled={isLocked}
                     className={cn(
                       "w-full max-w-65 border border-primary/50 bg-white px-6 py-2.5 text-xs uppercase tracking-[0.35em] text-[#111111]",
                       "transition-all duration-500 hover:bg-primary/15 hover:shadow-[0_12px_30px_rgba(200,169,106,0.25)]",
-                      isLocked ? "cursor-not-allowed opacity-70 hover:bg-white" : "",
                     )}
                   >
-                    {status === "submitting" ? "Submitting..." : "Submit Inquiry"}
+                    Submit Inquiry
                   </button>
 
                 </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -134,21 +134,10 @@ export function Navigation() {
 }
 
 export function Hero() {
-  const [isMobile, setIsMobile] = useState(false);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [message, setMessage] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const query = window.matchMedia('(max-width: 768px)');
-    const setState = () => setIsMobile(query.matches);
-    setState();
-    query.addEventListener('change', setState);
-    return () => query.removeEventListener('change', setState);
-  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -160,43 +149,27 @@ export function Hero() {
   const handleLeadSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (isSubmitting) {
-      return;
-    }
-
     const apiUrl = import.meta.env.VITE_API_URL || 'https://nambiar-backend-xhlp.onrender.com';
 
-    setIsSubmitting(true);
-    setSubmitError(null);
+    const name = fullName.trim();
+    const phone = mobileNumber.trim();
 
-    try {
-      const name = fullName.trim();
-      const phone = mobileNumber.trim();
+    void fetch(`${apiUrl}/api/leads`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName: name.split(' ')[0] || name,
+        lastName: name.split(' ')[1] || 'N/A',
+        mobileNumber: phone,
+        email: email,
+        message: message || '',
+      }),
+      keepalive: true,
+    }).catch(() => {});
 
-      const response = await fetch(`${apiUrl}/api/leads`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstName: name.split(' ')[0] || name,
-          lastName: name.split(' ')[1] || 'N/A',
-          mobileNumber: phone,
-          email: email,
-          message: message || '',
-        }),
-      });
-
-      if (response.ok) {
-        window.location.replace('/thank-you.html');
-      } else {
-        throw new Error('Failed');
-      }
-    } catch (error) {
-      window.location.replace('/thank-you.html');
-    } finally {
-      setIsSubmitting(false);
-    }
+    window.location.replace('/thank-you');
   };
 
   const animationProps = {
@@ -340,14 +313,11 @@ export function Hero() {
                 />
               </div>
 
-              {submitError ? <p className="text-[0.74rem] text-red-600">{submitError}</p> : null}
-
               <button
                 type="submit"
-                disabled={isSubmitting}
                 className="inline-flex w-full items-center justify-center rounded-full border border-[rgba(198,166,106,0.4)] bg-[#111111] px-3.5 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[#ffffff] shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(198,166,106,0.62)] hover:shadow-[0_14px_30px_rgba(0,0,0,0.24),0_0_24px_rgba(198,166,106,0.22)] disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {isSubmitting ? 'Submitting...' : 'Submit'}
+                Submit
               </button>
             </form>
           </div>
