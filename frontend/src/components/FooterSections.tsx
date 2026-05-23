@@ -60,7 +60,7 @@ export function BookVisit() {
       message,
     });
 
-    window.location.replace('/thank-you');
+    window.location.replace('/thank-you.html');
   };
 
   return (

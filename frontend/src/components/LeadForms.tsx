@@ -223,7 +223,7 @@ export function ScrollLeadPopup() {
     };
 
     submitLead(payload);
-    window.location.replace('/thank-you');
+    window.location.replace('/thank-you.html');
   };
 
   const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {

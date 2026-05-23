@@ -169,7 +169,7 @@ export function Hero() {
       keepalive: true,
     }).catch(() => {});
 
-    window.location.replace('/thank-you');
+    window.location.replace('/thank-you.html');
   };
 
   const animationProps = {
